@@ -1,9 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import type { Transition, Variants } from "framer-motion";
-
-const fadeTransition: Transition = { duration: 0.28, ease: "easeOut" };
+import type { Variants } from "framer-motion";
 
 const pageVariants: Variants = {
   hidden: {},
@@ -17,7 +15,7 @@ const gridVariants: Variants = {
 
 const fadeVariants: Variants = {
   hidden: { opacity: 0, y: 10 },
-  show: { opacity: 1, y: 0, transition: fadeTransition },
+  show: { opacity: 1, y: 0 },
 };
 
 export function PageStagger({
@@ -61,7 +59,11 @@ export function Fade({
   className?: string;
 }) {
   return (
-    <motion.div variants={fadeVariants} className={className}>
+    <motion.div
+      variants={fadeVariants}
+      transition={{ duration: 0.28, ease: "easeOut" }}
+      className={className}
+    >
       {children}
     </motion.div>
   );
