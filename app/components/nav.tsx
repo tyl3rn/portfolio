@@ -9,9 +9,9 @@ const pages = [
 ];
 
 const links = [
-  { href: "https://github.com/", label: "github" },
+  { href: "https://github.com/tyl3rn", label: "github" },
   { href: "https://linkedin.com/in/tyler-nguyen2028", label: "linkedin" },
-  { href: "/Tyler_Resume_May28.pdf", label: "resume" },
+  { href: "/Tyler_Resume_May28 (1).pdf", label: "resume" },
 ];
 
 export default function Nav() {
