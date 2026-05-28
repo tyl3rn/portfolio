@@ -1,24 +1,23 @@
 "use client";
 
 import { motion } from "framer-motion";
+import type { Transition, Variants } from "framer-motion";
 
-const pageVariants = {
+const fadeTransition: Transition = { duration: 0.28, ease: "easeOut" };
+
+const pageVariants: Variants = {
   hidden: {},
   show: { transition: { staggerChildren: 0.07 } },
 };
 
-const gridVariants = {
+const gridVariants: Variants = {
   hidden: {},
   show: { transition: { staggerChildren: 0.1 } },
 };
 
-const fadeVariants = {
+const fadeVariants: Variants = {
   hidden: { opacity: 0, y: 10 },
-  show: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.28, ease: "easeOut" },
-  },
+  show: { opacity: 1, y: 0, transition: fadeTransition },
 };
 
 export function PageStagger({
