@@ -20,7 +20,7 @@ const experience = [
     role: "software developer intern",
     company: "Booz Allen Hamilton",
     location: "remote",
-    period: "april 2026 – present",
+    period: "april 2026 to present",
     description:
       "building llm gateways and iot edge systems for production agentic ai workflows.",
     color: "#7f5af0",
@@ -29,7 +29,7 @@ const experience = [
     role: "ai developer intern",
     company: "MyAiPathways",
     location: "Hamilton, VA",
-    period: "jan – april 2026",
+    period: "jan to april 2026",
     description: "built a full-stack document automation platform.",
     color: "#e53170",
   },
@@ -37,7 +37,7 @@ const experience = [
     role: "client project developer",
     company: "ML@UVA",
     location: "Charlottesville, VA",
-    period: "oct 2025 – jan 2026",
+    period: "oct 2025 to jan 2026",
     description:
       "built a computer vision scoring app for the uva math tournament, reaching 96 to 100% accuracy.",
     color: "#2cb67d",
@@ -46,7 +46,7 @@ const experience = [
     role: "software engineer intern",
     company: "theCourseForum",
     location: "Charlottesville, VA",
-    period: "sept – dec 2025",
+    period: "sept to dec 2025",
     description:
       "built content moderation and new features for uva's course review platform serving 10k+ users.",
     color: "#ffd803",
