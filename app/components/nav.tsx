@@ -23,7 +23,7 @@ export default function Nav() {
       {/* scroll progress, styled like a track playhead */}
       <motion.div
         style={{ scaleX: scrollYProgress }}
-        className="fixed top-0 left-0 right-0 h-[3px] z-50 origin-left bg-gradient-to-r from-grape via-punch to-amber"
+        className="fixed top-0 left-0 right-0 h-[3px] z-50 origin-left bg-gradient-to-r from-amber to-glow"
       />
 
       <header className="fixed top-4 left-1/2 -translate-x-1/2 z-40 w-[calc(100%-2rem)] max-w-3xl">
@@ -32,7 +32,7 @@ export default function Nav() {
             href="#top"
             className="font-display font-bold text-sm tracking-tight text-ink whitespace-nowrap"
           >
-            tyler<span className="text-amber">.</span>n
+            tyler.n
           </a>
 
           <div className="hidden sm:flex items-center gap-4">

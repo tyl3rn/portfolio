@@ -3,14 +3,16 @@
 import { useEffect, useRef, useState } from "react";
 import { BeatEngine, BPM, type PadId } from "./beat-engine";
 
-const PADS: { id: PadId; label: string; color: string }[] = [
-  { id: "stab", label: "stab", color: "#7f5af0" },
-  { id: "sub", label: "sub", color: "#e53170" },
-  { id: "zap", label: "zap", color: "#2cb67d" },
-  { id: "tom", label: "tom", color: "#ff8906" },
-  { id: "tick", label: "tick", color: "#ffd803" },
-  { id: "bell", label: "bell", color: "#4fc4cf" },
+const PADS: { id: PadId; label: string }[] = [
+  { id: "stab", label: "stab" },
+  { id: "sub", label: "sub" },
+  { id: "zap", label: "zap" },
+  { id: "tom", label: "tom" },
+  { id: "tick", label: "tick" },
+  { id: "bell", label: "bell" },
 ];
+
+const PAD_COLOR = "#ffd803";
 
 function Turntable({
   spinning,
@@ -103,7 +105,7 @@ export default function DJDeck({
         <div className="flex flex-col items-center justify-between gap-3 py-1 w-32 sm:w-44">
           {/* led screen */}
           <div className="w-full rounded-md bg-[#0a0913] border border-liney px-2 py-1.5 text-center">
-            <p className="font-display text-[10px] sm:text-xs text-mint tracking-widest">
+            <p className="font-display text-[10px] sm:text-xs text-glow tracking-widest">
               {playing ? "▶ NIGHT DRIVE" : "■ STANDBY"}
             </p>
             <p className="font-display text-[9px] text-muted tracking-widest">
@@ -119,8 +121,8 @@ export default function DJDeck({
             aria-label={playing ? "Pause the beat" : "Play the beat"}
             className={`w-12 h-12 sm:w-14 sm:h-14 rounded-full font-display text-lg grid place-items-center border transition-all duration-200 active:scale-90 ${
               playing
-                ? "bg-punch border-punch text-ink shadow-[0_0_24px_rgba(229,49,112,0.5)]"
-                : "bg-mint border-mint text-night shadow-[0_0_24px_rgba(44,182,125,0.35)] hover:scale-105"
+                ? "bg-glow border-glow text-night shadow-[0_0_24px_rgba(255,216,3,0.5)]"
+                : "bg-amber border-amber text-night shadow-[0_0_24px_rgba(255,137,6,0.35)] hover:scale-105"
             }`}
           >
             {playing ? "❚❚" : "▶"}
@@ -142,13 +144,13 @@ export default function DJDeck({
                 }}
                 className="aspect-square rounded-md border border-black/50 transition-all duration-100 active:scale-90 active:brightness-150 hover:brightness-125"
                 style={{
-                  background: `${pad.color}22`,
-                  boxShadow: `inset 0 0 10px ${pad.color}44, 0 2px 4px rgba(0,0,0,0.4)`,
+                  background: `${PAD_COLOR}1c`,
+                  boxShadow: `inset 0 0 10px ${PAD_COLOR}3a, 0 2px 4px rgba(0,0,0,0.4)`,
                 }}
               >
                 <span
                   className="font-display text-[8px] sm:text-[9px] uppercase tracking-wider"
-                  style={{ color: pad.color }}
+                  style={{ color: PAD_COLOR }}
                 >
                   {pad.label}
                 </span>
@@ -173,12 +175,12 @@ export default function DJDeck({
             />
             <div className="flex justify-between font-display text-[8px] sm:text-[9px] tracking-[0.2em] text-muted uppercase -mt-1">
               <span className={xfade < 40 ? "text-amber" : ""}>beat</span>
-              <span className={xfade > 60 ? "text-grape" : ""}>keys</span>
+              <span className={xfade > 60 ? "text-amber" : ""}>keys</span>
             </div>
           </div>
         </div>
 
-        <Turntable spinning={playing} labelColor="#7f5af0" side="b" />
+        <Turntable spinning={playing} labelColor="#ffd803" side="b" />
       </div>
     </div>
   );

@@ -5,7 +5,61 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import Skyline from "./skyline";
 import DJDeck from "./dj-deck";
 
-const BULBS = ["#ffd803", "#e53170", "#2cb67d", "#7f5af0", "#ff8906"];
+// quadratic bezier, used to hang the light string
+const qb = (t: number, a: number, b: number, c: number) => {
+  const u = 1 - t;
+  return u * u * a + 2 * u * t * b + t * t * c;
+};
+
+const SAGS: [number, number, number, number, number, number][] = [
+  [0, 6, 250, 46, 500, 9],
+  [500, 9, 750, 46, 1000, 6],
+];
+const BULB_TS = [0.16, 0.32, 0.48, 0.64, 0.8];
+
+function StringLights() {
+  return (
+    <svg viewBox="0 0 1000 62" className="w-full" aria-hidden>
+      {SAGS.map(([x0, y0, x1, y1, x2, y2], s) => (
+        <g key={s}>
+          <path
+            d={`M${x0} ${y0} Q${x1} ${y1} ${x2} ${y2}`}
+            fill="none"
+            stroke="#3a3654"
+            strokeWidth="2"
+          />
+          {BULB_TS.map((t, i) => {
+            const x = qb(t, x0, x1, x2);
+            const y = qb(t, y0, y1, y2);
+            return (
+              <g key={i}>
+                <line
+                  x1={x}
+                  y1={y}
+                  x2={x}
+                  y2={y + 6}
+                  stroke="#3a3654"
+                  strokeWidth="1.5"
+                />
+                <circle
+                  cx={x}
+                  cy={y + 10}
+                  r="4.5"
+                  fill="#ffe8b3"
+                  className="glim"
+                  style={{
+                    filter: "drop-shadow(0 0 7px #ffd803)",
+                    animationDelay: `${((s * 5 + i) % 7) * 0.55}s`,
+                  }}
+                />
+              </g>
+            );
+          })}
+        </g>
+      ))}
+    </svg>
+  );
+}
 
 export default function Hero() {
   const ref = useRef<HTMLElement>(null);
@@ -29,29 +83,25 @@ export default function Hero() {
         {/* title */}
         <motion.div
           style={{ y: titleY, opacity: titleOpacity }}
-          className="relative z-10 mb-10 sm:mb-14"
+          className="relative z-10 mb-12 sm:mb-16"
         >
-          <p className="font-hand text-xl sm:text-2xl text-mint rotate-[-2deg] w-fit mb-2">
-            welcome to my room ✦
+          <p className="font-hand text-xl sm:text-2xl text-amber rotate-[-2deg] w-fit mb-2">
+            welcome to my room
           </p>
           <h1 className="font-display text-5xl sm:text-7xl lg:text-8xl font-bold tracking-tighter lowercase leading-[0.95]">
             tyler
             <br />
-            nguyen<span className="text-amber">.</span>
+            nguyen
           </h1>
           <p className="mt-5 max-w-md text-sm sm:text-base text-muted leading-relaxed">
             cs + math at the university of virginia. i build full-stack and ai
             things, and i&apos;m looking for a summer 2027 swe internship.
           </p>
           <div className="mt-4 flex flex-wrap gap-2">
-            {["full-stack", "ai engineering", "late-night builds"].map((t, i) => (
+            {["full-stack", "ai engineering", "late-night builds"].map((t) => (
               <span
                 key={t}
-                className="rounded-full border px-3 py-1 text-xs font-display tracking-wide"
-                style={{
-                  borderColor: BULBS[(i + 1) % BULBS.length],
-                  color: BULBS[(i + 1) % BULBS.length],
-                }}
+                className="rounded-full border border-amber/50 text-amber px-3 py-1 text-xs font-display tracking-wide"
               >
                 {t}
               </span>
@@ -59,30 +109,16 @@ export default function Hero() {
           </div>
         </motion.div>
 
-        {/* the room: window + desk + deck */}
+        {/* the room: lights, window, and the deck standing on the sill */}
         <div className="relative">
-          {/* string lights across the top of the window */}
-          <div
-            aria-hidden
-            className="absolute -top-4 left-2 right-2 z-20 flex justify-between px-6"
-          >
-            {Array.from({ length: 12 }).map((_, i) => (
-              <span
-                key={i}
-                className="tw block w-2.5 h-2.5 rounded-full"
-                style={{
-                  background: BULBS[i % BULBS.length],
-                  boxShadow: `0 0 10px ${BULBS[i % BULBS.length]}`,
-                  animationDelay: `${(i % 5) * 0.7}s`,
-                  transform: `translateY(${i % 2 === 0 ? 0 : 5}px)`,
-                }}
-              />
-            ))}
+          {/* christmas lights draped above the window */}
+          <div className="absolute -top-6 sm:-top-8 inset-x-2 z-20 pointer-events-none">
+            <StringLights />
           </div>
 
           {/* window */}
           <div className="relative rounded-t-2xl border-[10px] border-b-0 border-[#2b2742] bg-[#2b2742] shadow-[0_30px_80px_rgba(0,0,0,0.5)]">
-            <div className="relative overflow-hidden rounded-t-lg aspect-[16/8] sm:aspect-[16/7]">
+            <div className="relative overflow-hidden rounded-t-lg aspect-video">
               <motion.div style={{ y: skyY }} className="absolute inset-0 h-[120%]">
                 <Skyline playing={playing} />
               </motion.div>
@@ -99,25 +135,14 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* window sill / desk */}
+          {/* window sill */}
           <div className="relative h-5 rounded-b-md bg-gradient-to-b from-[#38334f] to-[#241f38] border-x border-b border-black/40" />
 
-          {/* desk clutter */}
-          <div
-            aria-hidden
-            className="relative z-10 -mt-1 mb-3 flex justify-between px-4 sm:px-10"
-          >
-            <p className="font-hand text-base sm:text-lg text-punch rotate-[-4deg] bg-[#241f38] px-2 rounded-sm">
-              rent-free: the skyline
-            </p>
-            <p className="font-hand text-base sm:text-lg text-glow rotate-[3deg] bg-[#241f38] px-2 rounded-sm">
-              ☕ fuel
-            </p>
-          </div>
-
-          {/* the deck sits on the desk */}
-          <div className="relative z-10 -mt-1">
-            <DJDeck onPlayingChange={setPlaying} />
+          {/* the deck stands on the sill, in front of the glass */}
+          <div className="relative z-10 mt-4 sm:mt-0 sm:absolute sm:bottom-4 sm:inset-x-6 lg:inset-x-16">
+            <div className="max-w-2xl mx-auto">
+              <DJDeck onPlayingChange={setPlaying} />
+            </div>
           </div>
         </div>
 
