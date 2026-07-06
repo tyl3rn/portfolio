@@ -39,3 +39,4 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+/Tyler_Resume_Jul_1 - Copy.pdf
