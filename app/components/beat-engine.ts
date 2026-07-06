@@ -1,26 +1,128 @@
-// A tiny synthesized lo-fi beat engine. Everything is generated with the
+// A tiny synthesized beat engine. Everything is generated with the
 // Web Audio API so the site ships zero audio assets.
-
-export const BPM = 88;
 
 export type PadId = "stab" | "sub" | "zap" | "tom" | "tick" | "bell";
 
 const note = (midi: number) => 440 * Math.pow(2, (midi - 69) / 12);
 
-// Fmaj7 → Em7 → Dm7 → Cmaj7, one chord per bar
-const CHORDS: number[][] = [
-  [53, 57, 60, 64],
-  [52, 55, 59, 62],
-  [50, 53, 57, 60],
-  [48, 52, 55, 59],
-];
-const BASS: number[] = [29, 28, 26, 24];
+// All step arrays are positions in a 16-step bar; songs loop over 4 bars
+// (one chord + one bass root per bar).
+export type Song = {
+  id: string;
+  title: string;
+  vibe: string;
+  bpm: number;
+  chords: number[][];
+  bass: number[];
+  kick: number[];
+  snare: number[];
+  hats: number[];
+  openHats: number[];
+  chordSteps: number[];
+  bassSteps: number[] | "kick";
+  chordType: OscillatorType;
+  chordDecay: number;
+  chordCutoff: number;
+};
 
-const KICK_STEPS = [0, 7, 10];
-const SNARE_STEPS = [4, 12];
+export const SONGS: Song[] = [
+  {
+    id: "night-drive",
+    title: "night drive",
+    vibe: "lo-fi, window down",
+    bpm: 88,
+    // Fmaj7 → Em7 → Dm7 → Cmaj7
+    chords: [
+      [53, 57, 60, 64],
+      [52, 55, 59, 62],
+      [50, 53, 57, 60],
+      [48, 52, 55, 59],
+    ],
+    bass: [29, 28, 26, 24],
+    kick: [0, 7, 10],
+    snare: [4, 12],
+    hats: [0, 2, 4, 6, 8, 10, 12],
+    openHats: [14],
+    chordSteps: [0],
+    bassSteps: "kick",
+    chordType: "triangle",
+    chordDecay: 1.4,
+    chordCutoff: 900,
+  },
+  {
+    id: "rooftop-house",
+    title: "rooftop house",
+    vibe: "4-on-the-floor, sunset",
+    bpm: 122,
+    // Am9-ish stabs
+    chords: [
+      [57, 60, 64, 67],
+      [55, 59, 62, 66],
+      [53, 57, 60, 64],
+      [55, 59, 62, 66],
+    ],
+    bass: [33, 31, 29, 31],
+    kick: [0, 4, 8, 12],
+    snare: [4, 12],
+    hats: [0, 4, 8, 12],
+    openHats: [2, 6, 10, 14],
+    chordSteps: [0, 10],
+    bassSteps: [2, 6, 10, 14],
+    chordType: "sawtooth",
+    chordDecay: 0.5,
+    chordCutoff: 1600,
+  },
+  {
+    id: "subway-loop",
+    title: "subway loop",
+    vibe: "boom bap, downtown",
+    bpm: 94,
+    // Dm7 → Bbmaj7 → Gm7 → A7
+    chords: [
+      [50, 53, 57, 60],
+      [46, 50, 53, 57],
+      [43, 46, 50, 53],
+      [45, 49, 52, 55],
+    ],
+    bass: [26, 22, 19, 21],
+    kick: [0, 6, 10, 13],
+    snare: [4, 12],
+    hats: [0, 2, 4, 6, 8, 10, 12, 14],
+    openHats: [7],
+    chordSteps: [0],
+    bassSteps: "kick",
+    chordType: "triangle",
+    chordDecay: 1.2,
+    chordCutoff: 700,
+  },
+  {
+    id: "arcade-dusk",
+    title: "arcade dusk",
+    vibe: "chiptune funk, corner store",
+    bpm: 114,
+    // Am7 → Fmaj7 → Cmaj7 → G
+    chords: [
+      [57, 60, 64, 67],
+      [53, 57, 60, 64],
+      [60, 64, 67, 71],
+      [55, 59, 62, 67],
+    ],
+    bass: [33, 29, 24, 31],
+    kick: [0, 3, 8, 11],
+    snare: [4, 12],
+    hats: [0, 2, 4, 6, 8, 10, 12, 14],
+    openHats: [],
+    chordSteps: [0, 8],
+    bassSteps: "kick",
+    chordType: "square",
+    chordDecay: 0.4,
+    chordCutoff: 2400,
+  },
+];
 
 export class BeatEngine {
   playing = false;
+  song: Song = SONGS[0];
 
   private ctx: AudioContext | null = null;
   private master!: GainNode;
@@ -99,27 +201,35 @@ export class BeatEngine {
     this.ctx = null;
   }
 
+  /** Switch tracks; takes effect immediately, even mid-playback. */
+  setSong(song: Song) {
+    this.song = song;
+  }
+
   private schedule = () => {
     const ctx = this.ctx!;
-    const sixteenth = 60 / BPM / 4;
     while (this.nextTime < ctx.currentTime + 0.12) {
       this.playStep(this.step, this.nextTime);
-      this.nextTime += sixteenth;
+      this.nextTime += 60 / this.song.bpm / 4; // one 16th at current tempo
       this.step = (this.step + 1) % 64; // 4-bar loop
     }
   };
 
   private playStep(globalStep: number, t: number) {
+    const s = this.song;
     const step = globalStep % 16;
     const bar = Math.floor(globalStep / 16);
 
-    if (KICK_STEPS.includes(step)) this.kick(t);
-    if (SNARE_STEPS.includes(step)) this.snare(t);
-    if (step % 2 === 0) this.hat(t, step % 4 === 2 ? 0.1 : 0.2);
-    if (step === 14 && bar % 2 === 1) this.hat(t, 0.16, true);
+    if (s.kick.includes(step)) this.kick(t);
+    if (s.snare.includes(step)) this.snare(t);
+    if (s.hats.includes(step)) this.hat(t, step % 4 === 2 ? 0.1 : 0.2);
+    if (s.openHats.includes(step)) this.hat(t, 0.16, true);
 
-    if (step === 0) this.chord(t, CHORDS[bar], this.melody, 1.4, 900);
-    if (KICK_STEPS.includes(step)) this.bass(t, BASS[bar]);
+    if (s.chordSteps.includes(step)) {
+      this.chord(t, s.chords[bar], this.melody, s.chordDecay, s.chordCutoff, s.chordType);
+    }
+    const bassSteps = s.bassSteps === "kick" ? s.kick : s.bassSteps;
+    if (bassSteps.includes(step)) this.bass(t, s.bass[bar]);
   }
 
   // ---------- voices ----------

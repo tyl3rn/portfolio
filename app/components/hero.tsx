@@ -63,7 +63,7 @@ function StringLights() {
 
 export default function Hero() {
   const ref = useRef<HTMLElement>(null);
-  const [playing, setPlaying] = useState(false);
+  const [beat, setBeat] = useState({ playing: false, bpm: 88 });
 
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -127,7 +127,7 @@ export default function Hero() {
             <div className="relative rounded-t-2xl border-[10px] border-b-0 border-[#2b2742] bg-[#2b2742] shadow-[0_30px_80px_rgba(0,0,0,0.5)]">
               <div className="relative overflow-hidden rounded-t-lg aspect-video sm:aspect-[16/8]">
                 <motion.div style={{ y: skyY }} className="absolute inset-0 h-[120%]">
-                  <Skyline playing={playing} />
+                  <Skyline playing={beat.playing} bpm={beat.bpm} />
                 </motion.div>
                 {/* pane bars */}
                 <div aria-hidden className="absolute inset-0 pointer-events-none">
@@ -156,7 +156,7 @@ export default function Hero() {
             style={{ transformPerspective: 1100 }}
             className="relative z-10 mt-8 sm:mt-12"
           >
-            <DJDeck onPlayingChange={setPlaying} />
+            <DJDeck onPlayingChange={(playing, bpm) => setBeat({ playing, bpm })} />
           </motion.div>
 
           {/* ground shadow under the deck */}

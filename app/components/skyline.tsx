@@ -84,7 +84,17 @@ function Windows({
   return <>{cells}</>;
 }
 
-export default function Skyline({ playing }: { playing: boolean }) {
+export default function Skyline({
+  playing,
+  bpm = 88,
+}: {
+  playing: boolean;
+  bpm?: number;
+}) {
+  const pulse = playing
+    ? { animationDuration: `${round2(60 / bpm)}s` }
+    : undefined;
+
   const stars = Array.from({ length: 34 }, (_, i) => ({
     x: round2(rnd(i, 1) * 800),
     y: round2(rnd(i, 2) * 170 + 8),
@@ -192,7 +202,7 @@ export default function Skyline({ playing }: { playing: boolean }) {
         <rect x="523" y="112" width="16" height="32" fill="#161832" />
         <line x1="531" y1="80" x2="531" y2="112" stroke="#161832" strokeWidth="3" />
         <circle cx="531" cy="78" r="3.2" fill="#e53170" className="blinker" />
-        <g className={playing ? "city-pulsing" : undefined}>
+        <g className={playing ? "city-pulsing" : undefined} style={pulse}>
           <rect x="509" y="142" width="44" height="6" fill="#ffd803" opacity="0.85" />
           <rect x="523" y="114" width="16" height="5" fill="#ff8906" opacity="0.85" />
         </g>
@@ -210,7 +220,7 @@ export default function Skyline({ playing }: { playing: boolean }) {
             fill="#12142c"
           />
         ))}
-        <g className={playing ? "city-pulsing" : undefined}>
+        <g className={playing ? "city-pulsing" : undefined} style={pulse}>
           {NEAR.map((b, i) => (
             <Windows
               key={i}
