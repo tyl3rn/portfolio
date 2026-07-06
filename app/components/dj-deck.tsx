@@ -100,7 +100,7 @@ export default function DJDeck({
   };
 
   return (
-    <div className="relative w-full max-w-3xl mx-auto rounded-lg border border-line bg-panel p-3 sm:p-5 shadow-[0_16px_40px_rgba(0,0,0,0.45)]">
+    <div className="relative w-full bg-panel p-3 sm:p-5">
       <div className="grid grid-cols-[1fr_auto_1fr] gap-3 sm:gap-5 items-stretch">
         <Turntable spinning={playing} bpm={song.bpm} labelColor="#ff8906" side="a" />
 

@@ -47,39 +47,42 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* the warehouse: concrete wall, steel windows, deck on the stage */}
-        <div className="concrete relative border border-line px-4 sm:px-10 pt-6 sm:pt-10 pb-8 sm:pb-10">
-          {/* window wall (fades in on its own) */}
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-60px" }}
-            transition={{ duration: 0.7, ease: "easeOut" }}
-          >
-            <div className="border-[6px] border-[#1c1c1c] bg-[#1c1c1c]">
-              <div className="relative overflow-hidden aspect-video sm:aspect-[16/8]">
-                <motion.div style={{ y: skyY }} className="absolute inset-0 h-[118%]">
-                  <Skyline playing={beat.playing} bpm={beat.bpm} />
-                </motion.div>
-                <div aria-hidden className="mullions absolute inset-0 pointer-events-none" />
+        {/* the warehouse: concrete wall with one window-and-console fixture.
+            Window and deck share a continuous steel frame so they read as a
+            single built-in booth, not a floating panel. */}
+        <div className="concrete relative border border-line px-4 sm:px-12 lg:px-16 pt-8 sm:pt-12 pb-10 sm:pb-14">
+          <div className="mx-auto max-w-3xl">
+            {/* glass (fades in first) */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-60px" }}
+              transition={{ duration: 0.7, ease: "easeOut" }}
+            >
+              <div className="border-[6px] border-[#1c1c1c] bg-[#1c1c1c]">
+                <div className="relative overflow-hidden aspect-video sm:aspect-[16/8]">
+                  <motion.div style={{ y: skyY }} className="absolute inset-0 h-[118%]">
+                    <Skyline playing={beat.playing} bpm={beat.bpm} />
+                  </motion.div>
+                  <div aria-hidden className="mullions absolute inset-0 pointer-events-none" />
+                </div>
               </div>
-            </div>
-            {/* concrete ledge under the glass */}
-            <div className="h-2.5 bg-[#111111] border-x border-b border-black/60" />
-          </motion.div>
+            </motion.div>
 
-          {/* the deck, its own second reveal, lying flat like real hardware */}
-          <motion.div
-            initial={{ opacity: 0, y: 48, rotateX: 52 }}
-            whileInView={{ opacity: 1, y: 0, rotateX: 22 }}
-            viewport={{ once: true, margin: "-60px" }}
-            transition={{ duration: 0.7, ease: "easeOut", delay: 0.15 }}
-            style={{ transformPerspective: 1100 }}
-            className="relative z-10 mt-8 sm:mt-10"
-          >
-            <DJDeck onPlayingChange={(playing, bpm) => setBeat({ playing, bpm })} />
-          </motion.div>
-
+            {/* console fused directly under the glass, settling into its tilt */}
+            <motion.div
+              initial={{ opacity: 0, rotateX: 50 }}
+              whileInView={{ opacity: 1, rotateX: 22 }}
+              viewport={{ once: true, margin: "-60px" }}
+              transition={{ duration: 0.7, ease: "easeOut", delay: 0.15 }}
+              style={{ transformPerspective: 1100, transformOrigin: "top center" }}
+              className="relative z-10"
+            >
+              <div className="border-[6px] border-t-0 border-[#1c1c1c] bg-panel shadow-[0_18px_40px_rgba(0,0,0,0.45)]">
+                <DJDeck onPlayingChange={(playing, bpm) => setBeat({ playing, bpm })} />
+              </div>
+            </motion.div>
+          </div>
         </div>
       </div>
     </section>
