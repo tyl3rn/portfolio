@@ -41,7 +41,7 @@ export default function Hero() {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1 text-sm text-muted hover:text-ink transition-colors"
             >
-              Resume
+              Résumé
               <ArrowUpRight size={14} aria-hidden />
             </a>
           </div>
@@ -80,10 +80,6 @@ export default function Hero() {
             <DJDeck onPlayingChange={(playing, bpm) => setBeat({ playing, bpm })} />
           </motion.div>
 
-          <p className="mt-7 text-center text-xs text-muted">
-            The deck really plays. Press play, hit the pads, pick a track on the
-            screen.
-          </p>
         </div>
       </div>
     </section>

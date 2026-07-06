@@ -280,7 +280,7 @@ function Footer() {
             {[
               { href: "https://github.com/tyl3rn", label: "GitHub" },
               { href: "https://linkedin.com/in/tyler-nguyen2028", label: "LinkedIn" },
-              { href: "/Tyler_Resume_May28 (1).pdf", label: "Resume" },
+              { href: "/Tyler_Resume_May28 (1).pdf", label: "Résumé" },
             ].map((link) => (
               <a
                 key={link.label}

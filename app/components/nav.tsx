@@ -39,7 +39,7 @@ export default function Nav() {
             rel="noopener noreferrer"
             className="rounded-full bg-ink px-3.5 py-1.5 text-sm font-medium text-bg hover:bg-white transition-colors"
           >
-            Resume
+            Résumé
           </a>
         </div>
       </nav>
