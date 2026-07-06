@@ -1,21 +1,194 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #1a1a1a;
+  --night: #0f0e17;
+  --wall: #191729;
+  --wall-2: #221f3a;
+  --ink: #fffffe;
+  --muted: #a7a9be;
+  --line: rgba(255, 255, 254, 0.08);
+  --amber: #ff8906;
+  --grape: #7f5af0;
+  --mint: #2cb67d;
+  --punch: #e53170;
+  --glow: #ffd803;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  --color-night: var(--night);
+  --color-wall: var(--wall);
+  --color-wall2: var(--wall-2);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-liney: var(--line);
+  --color-amber: var(--amber);
+  --color-grape: var(--grape);
+  --color-mint: var(--mint);
+  --color-punch: var(--punch);
+  --color-glow: var(--glow);
   --font-sans: var(--font-inter);
+  --font-display: var(--font-grotesk);
+  --font-hand: var(--font-caveat);
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
+  background: var(--night);
+  color: var(--ink);
   font-family: var(--font-inter), Inter, ui-sans-serif, system-ui, sans-serif;
-  font-size: 14px;
-  line-height: 21px;
   -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: var(--grape);
+  color: var(--ink);
+}
+
+/* film grain over everything, purely decorative */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  pointer-events: none;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ---------- keyframes ---------- */
+
+@keyframes twinkle {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.15; }
+}
+
+@keyframes blinkred {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.1; }
+}
+
+@keyframes spinrecord {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@keyframes drift {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(46px); }
+}
+
+@keyframes flyby {
+  0% { transform: translateX(-120px); }
+  100% { transform: translateX(920px); }
+}
+
+@keyframes citypulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.55; }
+}
+
+@keyframes bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(7px); }
+}
+
+/* ---------- skyline ---------- */
+
+.tw {
+  animation: twinkle 3.4s ease-in-out infinite;
+}
+
+.blinker {
+  animation: blinkred 1.6s steps(1) infinite;
+}
+
+.cloud-drift {
+  animation: drift 22s ease-in-out infinite;
+}
+
+.plane-fly {
+  animation: flyby 38s linear infinite;
+}
+
+.city-pulsing {
+  animation: citypulse 0.682s ease-in-out infinite; /* one beat at 88 bpm */
+}
+
+.scroll-cue {
+  animation: bob 1.6s ease-in-out infinite;
+}
+
+/* ---------- dj deck ---------- */
+
+.record {
+  background:
+    repeating-radial-gradient(
+      circle at 50% 50%,
+      #17151f 0px,
+      #17151f 3px,
+      #221f2e 4px,
+      #221f2e 5px
+    );
+}
+
+.record.spinning {
+  animation: spinrecord 1.36s linear infinite;
+}
+
+input[type="range"].xfader {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 30px;
+  background: transparent;
+  cursor: ew-resize;
+}
+
+input[type="range"].xfader::-webkit-slider-runnable-track {
+  height: 6px;
+  border-radius: 3px;
+  background: #0c0b14;
+  border: 1px solid rgba(255, 255, 254, 0.12);
+}
+
+input[type="range"].xfader::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 18px;
+  height: 26px;
+  margin-top: -11px;
+  border-radius: 4px;
+  background: linear-gradient(180deg, #f5f0e8, #b9b3c9);
+  border: 1px solid #0c0b14;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
+}
+
+input[type="range"].xfader::-moz-range-track {
+  height: 6px;
+  border-radius: 3px;
+  background: #0c0b14;
+  border: 1px solid rgba(255, 255, 254, 0.12);
+}
+
+input[type="range"].xfader::-moz-range-thumb {
+  width: 18px;
+  height: 26px;
+  border-radius: 4px;
+  background: linear-gradient(180deg, #f5f0e8, #b9b3c9);
+  border: 1px solid #0c0b14;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
+}
+
+/* ---------- marquee ---------- */
+
+.marquee-track {
+  animation: marquee 28s linear infinite;
 }
