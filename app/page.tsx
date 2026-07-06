@@ -1,4 +1,5 @@
 import { ArrowUpRight } from "lucide-react";
+import Pickleball from "./components/pickleball";
 import { Reveal, SectionHead } from "./components/reveal";
 
 /* ---------------- data ---------------- */
@@ -336,6 +337,7 @@ export default function Home() {
   return (
     <>
       <Hero />
+      <Pickleball />
       <About />
       <Experience />
       <Projects />
