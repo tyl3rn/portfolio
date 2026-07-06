@@ -23,7 +23,7 @@ const experience = [
     period: "april 2026 to present",
     description:
       "building llm gateways and iot edge systems for production agentic ai workflows.",
-    color: "#7f5af0",
+    color: "#ffd803",
   },
   {
     role: "ai developer intern",
@@ -31,7 +31,7 @@ const experience = [
     location: "Hamilton, VA",
     period: "jan to april 2026",
     description: "built a full-stack document automation platform.",
-    color: "#e53170",
+    color: "#ff8906",
   },
   {
     role: "client project developer",
@@ -40,7 +40,7 @@ const experience = [
     period: "oct 2025 to jan 2026",
     description:
       "built a computer vision scoring app for the uva math tournament, reaching 96 to 100% accuracy.",
-    color: "#2cb67d",
+    color: "#ffd803",
   },
   {
     role: "software engineer intern",
@@ -49,7 +49,7 @@ const experience = [
     period: "sept to dec 2025",
     description:
       "built content moderation and new features for uva's course review platform serving 10k+ users.",
-    color: "#ffd803",
+    color: "#ff8906",
   },
 ];
 
@@ -74,7 +74,7 @@ const projects: {
     image: "/rallyportfolio.png",
     github: "https://github.com/rallyhoohacks/rally-together",
     live: "https://rally-together.com/",
-    tape: "#e53170",
+    tape: "#ffd803",
     tilt: -1.5,
     note: "hackathon build → real app",
   },
@@ -85,7 +85,7 @@ const projects: {
       "a full-stack intramural sports management system for uva students with team registration, scheduling, and role-based auth.",
     tags: ["django", "postgresql", "amazon s3", "google oauth"],
     github: "https://github.com/tyl3rn/CIOManager",
-    tape: "#2cb67d",
+    tape: "#ff8906",
     tilt: 1.5,
     note: "go hoos",
   },
@@ -100,20 +100,20 @@ const crates: { label: string; items: string[]; color: string }[] = [
   {
     label: "frameworks",
     items: ["PyTorch", "React", "Django", "Express", "Node.js", "Flask", "OpenCV"],
-    color: "#7f5af0",
+    color: "#ffd803",
   },
   {
     label: "tools",
     items: ["Git", "Docker", "AWS", "Figma", "Xcode"],
-    color: "#2cb67d",
+    color: "#f5e9c9",
   },
 ];
 
 const bside = [
-  { emoji: "🎧", title: "music", blurb: "always on. the dj deck up top is the dream setup.", color: "#7f5af0" },
-  { emoji: "🏋️", title: "powerlifting", blurb: "chasing numbers that go up slower than my commit count.", color: "#e53170" },
-  { emoji: "🏓", title: "pickleball", blurb: "unreasonably competitive for a casual sport.", color: "#2cb67d" },
-  { emoji: "🫂", title: "friends", blurb: "most of these projects started as 2am ideas with them.", color: "#ff8906" },
+  { title: "music", blurb: "always on. the dj deck up top is the dream setup." },
+  { title: "powerlifting", blurb: "chasing numbers that go up slower than my commit count." },
+  { title: "pickleball", blurb: "unreasonably competitive for a casual sport." },
+  { title: "friends", blurb: "most of these projects started as 2am ideas with them." },
 ];
 
 const marqueeItems = [
@@ -219,7 +219,7 @@ function Experience() {
         <div className="absolute left-[7px] sm:left-[9px] top-1 bottom-1 w-[2px] bg-liney rounded-full" />
         <motion.div
           style={{ scaleY: scrollYProgress }}
-          className="absolute left-[7px] sm:left-[9px] top-1 bottom-1 w-[2px] origin-top rounded-full bg-gradient-to-b from-amber via-punch to-grape"
+          className="absolute left-[7px] sm:left-[9px] top-1 bottom-1 w-[2px] origin-top rounded-full bg-gradient-to-b from-glow to-amber"
         />
 
         <div className="flex flex-col gap-12">
@@ -283,8 +283,8 @@ function Projects() {
                 ) : (
                   <div className="w-full h-full grid place-items-center">
                     <span className="font-display text-3xl font-bold">
-                      <span style={{ color: "#E57200" }}>Cav</span>
-                      <span style={{ color: "#7f9cf5" }}>Rec</span>
+                      <span style={{ color: "#ff8906" }}>Cav</span>
+                      <span style={{ color: "#f5e9c9" }}>Rec</span>
                     </span>
                   </div>
                 )}
@@ -346,14 +346,11 @@ function BSide() {
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
         {bside.map((item, i) => (
           <Reveal key={item.title} delay={i * 0.1}>
-            <div
-              className="h-full rounded-lg border border-liney bg-wall p-4 sm:p-5 transition-transform duration-300 hover:-translate-y-1.5 hover:rotate-1"
-              style={{ boxShadow: `0 6px 0 -2px ${item.color}` }}
-            >
-              <span className="text-2xl" aria-hidden>
-                {item.emoji}
-              </span>
-              <p className="mt-2 font-display font-bold text-sm lowercase" style={{ color: item.color }}>
+            <div className="h-full rounded-lg border border-liney bg-wall p-4 sm:p-5 transition-transform duration-300 hover:-translate-y-1.5 hover:rotate-1 shadow-[0_6px_0_-2px_#ff8906]">
+              <p className="font-hand text-2xl text-glow leading-none" aria-hidden>
+                {String(i + 1).padStart(2, "0")}
+              </p>
+              <p className="mt-2 font-display font-bold text-sm lowercase text-amber">
                 {item.title}
               </p>
               <p className="mt-1.5 text-xs text-muted leading-relaxed">{item.blurb}</p>
@@ -370,9 +367,9 @@ function Footer() {
     <footer id="contact" className="border-t border-liney bg-wall/40">
       <div className="mx-auto max-w-5xl px-4 sm:px-8 py-20 sm:py-28 text-center">
         <Reveal>
-          <p className="font-hand text-2xl text-mint mb-3">last track ✦</p>
+          <p className="font-hand text-2xl text-amber mb-3">last track ✦</p>
           <h2 className="font-display text-4xl sm:text-6xl font-bold tracking-tight lowercase">
-            let&apos;s make something<span className="text-amber">.</span>
+            let&apos;s make something
           </h2>
           <div className="mt-8 flex flex-wrap justify-center gap-4">
             {[

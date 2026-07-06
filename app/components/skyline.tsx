@@ -2,10 +2,15 @@
 // All "randomness" is a deterministic hash so server and client render
 // the exact same scene.
 
+// Integer-only hash: Math.sin varies in the last bits between JS engines,
+// which caused React hydration mismatches. Math.imul is exact everywhere.
 const rnd = (a: number, b: number, c = 0) => {
-  const s = Math.sin(a * 127.1 + b * 311.7 + c * 74.7) * 43758.5453;
-  return s - Math.floor(s);
+  let h = Math.imul(a + 1, 374761393) ^ Math.imul(b + 1, 668265263) ^ Math.imul(c + 1, 1103515245);
+  h = Math.imul(h ^ (h >>> 13), 1274126177);
+  return ((h ^ (h >>> 16)) >>> 0) / 4294967296;
 };
+
+const round2 = (n: number) => Math.round(n * 100) / 100;
 
 type Building = { x: number; w: number; h: number };
 
@@ -68,7 +73,9 @@ function Windows({
           fill={litColor}
           className={flicker ? "tw" : undefined}
           style={
-            flicker ? { animationDelay: `${rnd(bi, c, r) * 4}s` } : undefined
+            flicker
+              ? { animationDelay: `${round2(rnd(bi, c, r) * 4)}s` }
+              : undefined
           }
         />
       );
@@ -79,10 +86,10 @@ function Windows({
 
 export default function Skyline({ playing }: { playing: boolean }) {
   const stars = Array.from({ length: 34 }, (_, i) => ({
-    x: rnd(i, 1) * 800,
-    y: rnd(i, 2) * 170 + 8,
-    r: rnd(i, 3) * 1.2 + 0.5,
-    d: rnd(i, 4) * 5,
+    x: round2(rnd(i, 1) * 800),
+    y: round2(rnd(i, 2) * 170 + 8),
+    r: round2(rnd(i, 3) * 1.2 + 0.5),
+    d: round2(rnd(i, 4) * 5),
   }));
 
   return (

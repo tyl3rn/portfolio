@@ -8,10 +8,8 @@
   --muted: #a7a9be;
   --line: rgba(255, 255, 254, 0.08);
   --amber: #ff8906;
-  --grape: #7f5af0;
-  --mint: #2cb67d;
-  --punch: #e53170;
   --glow: #ffd803;
+  --cream: #f5e9c9;
 }
 
 @theme inline {
@@ -22,10 +20,8 @@
   --color-muted: var(--muted);
   --color-liney: var(--line);
   --color-amber: var(--amber);
-  --color-grape: var(--grape);
-  --color-mint: var(--mint);
-  --color-punch: var(--punch);
   --color-glow: var(--glow);
+  --color-cream: var(--cream);
   --font-sans: var(--font-inter);
   --font-display: var(--font-grotesk);
   --font-hand: var(--font-caveat);
@@ -101,10 +97,19 @@ body::after {
   50% { transform: translateY(7px); }
 }
 
+@keyframes glimmer {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.72; }
+}
+
 /* ---------- skyline ---------- */
 
 .tw {
   animation: twinkle 3.4s ease-in-out infinite;
+}
+
+.glim {
+  animation: glimmer 3.8s ease-in-out infinite;
 }
 
 .blinker {
