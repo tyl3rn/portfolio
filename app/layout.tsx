@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Space_Grotesk, Caveat } from "next/font/google";
 import "./globals.css";
 import Nav from "./components/nav";
 
@@ -9,9 +9,22 @@ const inter = Inter({
   weight: ["400", "500"],
 });
 
+const grotesk = Space_Grotesk({
+  variable: "--font-grotesk",
+  subsets: ["latin"],
+  weight: ["400", "500", "700"],
+});
+
+const caveat = Caveat({
+  variable: "--font-caveat",
+  subsets: ["latin"],
+  weight: ["500", "700"],
+});
+
 export const metadata: Metadata = {
   title: "Tyler Nguyen",
-  description: "CS student & aspiring software engineer",
+  description:
+    "CS + math at UVA. Builds full-stack things, occasionally pretends to DJ.",
 };
 
 export default function RootLayout({
@@ -20,16 +33,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={inter.variable}>
-      <body className="bg-white text-[#1a1a1a] antialiased">
-        <div className="flex flex-col lg:flex-row min-h-screen">
-          <aside className="w-full lg:w-56 lg:fixed lg:h-screen bg-neutral-50 px-8 pt-10 pb-8 shrink-0 border-b border-neutral-200 lg:border-b-0 lg:border-r lg:border-neutral-200 lg:flex lg:flex-col">
-            <Nav />
-          </aside>
-          <main className="flex-1 lg:ml-56 px-8 py-10 lg:px-16 lg:py-14 max-w-2xl">
-            {children}
-          </main>
-        </div>
+    <html
+      lang="en"
+      data-scroll-behavior="smooth"
+      className={`${inter.variable} ${grotesk.variable} ${caveat.variable}`}
+    >
+      <body className="bg-night text-ink antialiased">
+        <Nav />
+        <main>{children}</main>
       </body>
     </html>
   );

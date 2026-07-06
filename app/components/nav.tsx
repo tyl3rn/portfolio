@@ -1,72 +1,70 @@
 "use client";
 
-import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { motion, useScroll } from "framer-motion";
 
-const pages = [
-  { href: "/", label: "home" },
-  { href: "/projects", label: "projects" },
+const anchors = [
+  { href: "#about", label: "about" },
+  { href: "#experience", label: "experience" },
+  { href: "#projects", label: "projects" },
+  { href: "#bside", label: "b-side" },
 ];
 
-const links = [
+const socials = [
   { href: "https://github.com/tyl3rn", label: "github" },
   { href: "https://linkedin.com/in/tyler-nguyen2028", label: "linkedin" },
   { href: "/Tyler_Resume_May28 (1).pdf", label: "resume" },
 ];
 
 export default function Nav() {
-  const pathname = usePathname();
+  const { scrollYProgress } = useScroll();
 
   return (
-    <div className="flex flex-col gap-8">
-      <div>
-        <p className="text-sm font-medium tracking-tight">Tyler Nguyen</p>
-        <p className="text-xs text-neutral-400 mt-1">university of virginia</p>
-        <p className="text-xs text-neutral-400 mt-3 leading-relaxed">
-          learning to make things.
-        </p>
-      </div>
+    <>
+      {/* scroll progress, styled like a track playhead */}
+      <motion.div
+        style={{ scaleX: scrollYProgress }}
+        className="fixed top-0 left-0 right-0 h-[3px] z-50 origin-left bg-gradient-to-r from-grape via-punch to-amber"
+      />
 
-      <div className="flex flex-col gap-1.5">
-        {pages.map(({ href, label }) => {
-          const active =
-            pathname === href ||
-            (href !== "/" && pathname.startsWith(href));
-          return (
-            <Link
-              key={href}
-              href={href}
-              className={`group text-sm flex items-center gap-2 transition-colors ${
-                active
-                  ? "text-[#1a1a1a]"
-                  : "text-neutral-400 hover:text-neutral-800"
-              }`}
-            >
-              <span className="inline-block transition-transform duration-200 ease-out group-hover:translate-x-0.5">
-                →
-              </span>
-              {label}
-            </Link>
-          );
-        })}
-      </div>
-
-      <div className="flex flex-col gap-1.5">
-        {links.map(({ href, label }) => (
+      <header className="fixed top-4 left-1/2 -translate-x-1/2 z-40 w-[calc(100%-2rem)] max-w-3xl">
+        <nav className="flex items-center justify-between gap-4 rounded-full border border-liney bg-night/70 backdrop-blur-md px-5 py-2.5 shadow-[0_8px_30px_rgba(0,0,0,0.4)]">
           <a
-            key={href}
-            href={href}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group text-sm flex items-center gap-2 text-neutral-400 hover:text-neutral-800 transition-colors"
+            href="#top"
+            className="font-display font-bold text-sm tracking-tight text-ink whitespace-nowrap"
           >
-            <span className="inline-block transition-transform duration-200 ease-out group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
-              ↗
-            </span>
-            {label}
+            tyler<span className="text-amber">.</span>n
           </a>
-        ))}
-      </div>
-    </div>
+
+          <div className="hidden sm:flex items-center gap-4">
+            {anchors.map(({ href, label }) => (
+              <a
+                key={href}
+                href={href}
+                className="text-xs text-muted hover:text-ink transition-colors"
+              >
+                {label}
+              </a>
+            ))}
+          </div>
+
+          <div className="flex items-center gap-3">
+            {socials.map(({ href, label }) => (
+              <a
+                key={href}
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group text-xs text-muted hover:text-ink transition-colors flex items-center gap-0.5"
+              >
+                <span className="inline-block transition-transform duration-200 ease-out group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
+                  ↗
+                </span>
+                {label}
+              </a>
+            ))}
+          </div>
+        </nav>
+      </header>
+    </>
   );
 }
