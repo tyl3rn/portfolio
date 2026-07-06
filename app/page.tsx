@@ -137,7 +137,7 @@ function Hero() {
             View projects
           </a>
           <a
-            href="/Tyler_Resume_May28 (1).pdf"
+            href="/Tyler_Resume.pdf"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-1 text-sm text-muted hover:text-ink transition-colors"
@@ -316,7 +316,7 @@ function Footer() {
             {[
               { href: "https://github.com/tyl3rn", label: "GitHub" },
               { href: "https://linkedin.com/in/tyler-nguyen2028", label: "LinkedIn" },
-              { href: "/Tyler_Resume_May28 (1).pdf", label: "Résumé" },
+              { href: "/Tyler_Resume.pdf", label: "Résumé" },
             ].map((link) => (
               <a
                 key={link.label}
