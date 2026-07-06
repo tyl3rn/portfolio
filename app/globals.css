@@ -97,21 +97,6 @@ body {
   animation: citypulse 0.682s ease-in-out infinite;
 }
 
-/* ---------- warehouse ---------- */
-
-/* poured-concrete wall: flat dark gray with a faint aggregate texture */
-.concrete {
-  background-color: #151515;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='3'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
-}
-
-/* steel factory-window mullions over the glass */
-.mullions {
-  background-image:
-    repeating-linear-gradient(to right, #1c1c1c 0 3px, transparent 3px 108px),
-    repeating-linear-gradient(to bottom, #1c1c1c 0 3px, transparent 3px 88px);
-}
-
 /* ---------- dj deck ---------- */
 
 .record {
