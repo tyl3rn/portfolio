@@ -24,8 +24,16 @@ function Penguin() {
       {/* wing + paddle, reaching toward the net */}
       <g transform="rotate(-24 10 -28)">
         <ellipse cx="13" cy="-20" rx="4" ry="9" fill="#262626" stroke="#3d3d44" strokeWidth="1" />
-        <rect x="12" y="-14" width="2.6" height="6" rx="1.3" fill="#6b6b74" />
-        <ellipse cx="13.3" cy="-4" rx="5.5" ry="7" fill="#6b6b74" />
+        <g transform="translate(13.3 -14)">
+          {/* wrapped grip with a butt cap */}
+          <rect x="-1.5" y="0" width="3" height="5.6" rx="1.3" fill="#4a4a52" />
+          <line x1="-1.5" y1="1.7" x2="1.5" y2="1.7" stroke="#71717c" strokeWidth="0.8" />
+          <line x1="-1.5" y1="3.2" x2="1.5" y2="3.2" stroke="#71717c" strokeWidth="0.8" />
+          <rect x="-2.1" y="-1.5" width="4.2" height="1.7" rx="0.85" fill="#6b6b74" />
+          {/* face: edge guard, then the hitting surface */}
+          <rect x="-6" y="4.8" width="12" height="14.6" rx="5.2" fill="#55555c" stroke="#8f8f98" strokeWidth="1.1" />
+          <rect x="-4.1" y="6.7" width="8.2" height="10.8" rx="3.6" fill="#65656f" />
+        </g>
       </g>
     </g>
   );
@@ -84,6 +92,12 @@ export default function Pickleball() {
           ease: "linear",
           y: { duration: 0.65, ease: ["easeOut", "easeIn"] },
         }
+      );
+      // topspin: the hole pattern makes the rotation visible
+      void animate(
+        "[data-ballspin]",
+        { rotate: toRight ? [0, 540] : [0, -540] },
+        { duration: 0.65, ease: "linear" }
       );
     };
 
@@ -154,7 +168,21 @@ export default function Pickleball() {
         {/* the ball, resting by the left paddle until someone swings */}
         <g transform="translate(142 114)">
           <g data-ball>
-            <circle r="5.5" fill="#ff8906" />
+            <g
+              data-ballspin
+              style={{ transformBox: "fill-box", transformOrigin: "center" }}
+            >
+              <circle r="6.2" fill="#ff8906" stroke="#c96f05" strokeWidth="1" />
+              {/* the holes that make it a pickleball, not a tennis ball */}
+              <g fill="#a35a04">
+                <circle cx="0" cy="0" r="1" />
+                <circle cx="0" cy="-3.3" r="1" />
+                <circle cx="3.1" cy="-1.2" r="1" />
+                <circle cx="1.9" cy="2.8" r="1" />
+                <circle cx="-1.9" cy="2.8" r="1" />
+                <circle cx="-3.1" cy="-1.2" r="1" />
+              </g>
+            </g>
           </g>
         </g>
       </svg>
