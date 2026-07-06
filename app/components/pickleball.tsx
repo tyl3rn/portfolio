@@ -4,11 +4,21 @@ import { useEffect, useRef } from "react";
 import { useAnimate, useReducedMotion } from "framer-motion";
 
 // Scroll down: left penguin serves. Scroll up: right penguin returns.
-// A cooldown longer than the ball's flight keeps fast scroll-jiggling
-// from turning the rally into a glitch.
-const COOLDOWN_MS = 950;
+// The next hit is blocked until the current shot lands (plus a small
+// buffer), so fast scroll-jiggling can't glitch the rally.
 const SCROLL_THRESHOLD = 48; // px of scrolling in one direction per hit
 const BALL_TRAVEL = 276; // svg units between the two paddles
+const HIT_BUFFER_MS = 130; // extra pause after a shot lands
+
+// A mix of shots so the rally isn't one repeated arc. peak is how high
+// the ball rises (more negative = higher); dur is the flight time.
+type Shot = { dur: number; peak: number; spin: number };
+const SHOTS: Shot[] = [
+  { dur: 0.4, peak: -22, spin: 760 }, // drive: fast and low over the net
+  { dur: 0.65, peak: -64, spin: 540 }, // normal arc
+  { dur: 0.65, peak: -64, spin: 540 }, // (weighted so normal is common)
+  { dur: 1.1, peak: -122, spin: 340 }, // lob: slow and high
+];
 
 // Drawn facing right, feet on y=0.
 function Penguin() {
@@ -44,7 +54,7 @@ export default function Pickleball() {
   const reduced = useReducedMotion();
 
   const side = useRef<"left" | "right">("left");
-  const lastHit = useRef(-Infinity);
+  const busyUntil = useRef(0);
   const visible = useRef(false);
   const lastY = useRef(0);
   const acc = useRef(0);
@@ -66,15 +76,17 @@ export default function Pickleball() {
 
     const hit = (dir: "down" | "up") => {
       const now = performance.now();
-      if (now - lastHit.current < COOLDOWN_MS) return;
+      if (now < busyUntil.current) return;
 
       const from = side.current;
       if (dir === "down" && from === "left") side.current = "right";
       else if (dir === "up" && from === "right") side.current = "left";
       else return;
 
-      lastHit.current = now;
       const toRight = from === "left";
+      const shot = SHOTS[Math.floor(Math.random() * SHOTS.length)];
+      // block the next hit until this shot lands
+      busyUntil.current = now + shot.dur * 1000 + HIT_BUFFER_MS;
 
       void animate(
         `[data-hop="${from}"]`,
@@ -85,19 +97,19 @@ export default function Pickleball() {
         "[data-ball]",
         {
           x: toRight ? [0, BALL_TRAVEL / 2, BALL_TRAVEL] : [BALL_TRAVEL, BALL_TRAVEL / 2, 0],
-          y: [0, -64, 0],
+          y: [0, shot.peak, 0],
         },
         {
-          duration: 0.65,
+          duration: shot.dur,
           ease: "linear",
-          y: { duration: 0.65, ease: ["easeOut", "easeIn"] },
+          y: { duration: shot.dur, ease: ["easeOut", "easeIn"] },
         }
       );
       // topspin: the hole pattern makes the rotation visible
       void animate(
         "[data-ballspin]",
-        { rotate: toRight ? [0, 540] : [0, -540] },
-        { duration: 0.65, ease: "linear" }
+        { rotate: toRight ? [0, shot.spin] : [0, -shot.spin] },
+        { duration: shot.dur, ease: "linear" }
       );
     };
 
