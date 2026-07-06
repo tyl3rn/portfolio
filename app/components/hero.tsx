@@ -109,41 +109,61 @@ export default function Hero() {
           </div>
         </motion.div>
 
-        {/* the room: lights, window, and the deck standing on the sill */}
+        {/* the room: window up top, deck on the desk below */}
         <div className="relative">
-          {/* christmas lights draped above the window */}
-          <div className="absolute -top-6 sm:-top-8 inset-x-2 z-20 pointer-events-none">
-            <StringLights />
-          </div>
+          {/* window (fades in on its own as you reach it) */}
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ duration: 0.9, ease: "easeOut" }}
+            className="relative"
+          >
+            {/* christmas lights draped above the window */}
+            <div className="absolute -top-6 sm:-top-8 inset-x-2 z-20 pointer-events-none">
+              <StringLights />
+            </div>
 
-          {/* window */}
-          <div className="relative rounded-t-2xl border-[10px] border-b-0 border-[#2b2742] bg-[#2b2742] shadow-[0_30px_80px_rgba(0,0,0,0.5)]">
-            <div className="relative overflow-hidden rounded-t-lg aspect-video">
-              <motion.div style={{ y: skyY }} className="absolute inset-0 h-[120%]">
-                <Skyline playing={playing} />
-              </motion.div>
-              {/* pane bars */}
-              <div aria-hidden className="absolute inset-0 pointer-events-none">
-                <div className="absolute left-1/2 top-0 bottom-0 w-2 -translate-x-1/2 bg-[#2b2742]" />
-                <div className="absolute top-1/2 left-0 right-0 h-2 -translate-y-1/2 bg-[#2b2742] hidden sm:block" />
+            <div className="relative rounded-t-2xl border-[10px] border-b-0 border-[#2b2742] bg-[#2b2742] shadow-[0_30px_80px_rgba(0,0,0,0.5)]">
+              <div className="relative overflow-hidden rounded-t-lg aspect-video sm:aspect-[16/8]">
+                <motion.div style={{ y: skyY }} className="absolute inset-0 h-[120%]">
+                  <Skyline playing={playing} />
+                </motion.div>
+                {/* pane bars */}
+                <div aria-hidden className="absolute inset-0 pointer-events-none">
+                  <div className="absolute left-1/2 top-0 bottom-0 w-2 -translate-x-1/2 bg-[#2b2742]" />
+                  <div className="absolute top-1/2 left-0 right-0 h-2 -translate-y-1/2 bg-[#2b2742] hidden sm:block" />
+                </div>
+                {/* glass shine */}
+                <div
+                  aria-hidden
+                  className="absolute inset-0 pointer-events-none bg-gradient-to-tr from-transparent via-transparent to-white/[0.06]"
+                />
               </div>
-              {/* glass shine */}
-              <div
-                aria-hidden
-                className="absolute inset-0 pointer-events-none bg-gradient-to-tr from-transparent via-transparent to-white/[0.06]"
-              />
             </div>
-          </div>
 
-          {/* window sill */}
-          <div className="relative h-5 rounded-b-md bg-gradient-to-b from-[#38334f] to-[#241f38] border-x border-b border-black/40" />
+            {/* window sill */}
+            <div className="relative h-5 rounded-b-md bg-gradient-to-b from-[#38334f] to-[#241f38] border-x border-b border-black/40" />
+          </motion.div>
 
-          {/* the deck stands on the sill, in front of the glass */}
-          <div className="relative z-10 mt-4 sm:mt-0 sm:absolute sm:bottom-4 sm:inset-x-6 lg:inset-x-16">
-            <div className="max-w-2xl mx-auto">
-              <DJDeck onPlayingChange={setPlaying} />
-            </div>
-          </div>
+          {/* the deck lies on the desk below, tilted like real hardware,
+              and settles into place as its own second reveal */}
+          <motion.div
+            initial={{ opacity: 0, y: 70, rotateX: 58 }}
+            whileInView={{ opacity: 1, y: 0, rotateX: 24 }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ duration: 0.9, ease: "easeOut", delay: 0.15 }}
+            style={{ transformPerspective: 1100 }}
+            className="relative z-10 mt-8 sm:mt-12"
+          >
+            <DJDeck onPlayingChange={setPlaying} />
+          </motion.div>
+
+          {/* ground shadow under the deck */}
+          <div
+            aria-hidden
+            className="mx-auto -mt-3 h-8 w-2/3 rounded-[50%] bg-black/60 blur-2xl"
+          />
         </div>
 
         {/* scroll cue */}
