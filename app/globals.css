@@ -1,7 +1,6 @@
 @import "tailwindcss";
 
-/* 70/20/10: neutral concrete grays carry the page, the skyline
-   illustration is the complementary layer, amber is the only accent. */
+/* Neutral grays carry the page; amber is the only accent. */
 :root {
   --bg: #0a0a0a;
   --panel: #141414;
@@ -10,7 +9,6 @@
   --ink: #ededed;
   --muted: #8f8f98;
   --accent: #ff8906;
-  --glow: #ffd803; /* skyline window lights only */
 }
 
 @theme inline {
@@ -21,7 +19,6 @@
   --color-ink: var(--ink);
   --color-muted: var(--muted);
   --color-accent: var(--accent);
-  --color-glow: var(--glow);
   --font-sans: var(--font-inter);
   --font-display: var(--font-grotesk);
 }
@@ -43,114 +40,3 @@ body {
   color: #0a0a0a;
 }
 
-/* ---------- keyframes ---------- */
-
-@keyframes twinkle {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.15; }
-}
-
-@keyframes blinkred {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.1; }
-}
-
-@keyframes spinrecord {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
-@keyframes drift {
-  0%, 100% { transform: translateX(0); }
-  50% { transform: translateX(46px); }
-}
-
-@keyframes flyby {
-  0% { transform: translateX(-120px); }
-  100% { transform: translateX(920px); }
-}
-
-@keyframes citypulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.55; }
-}
-
-/* ---------- skyline ---------- */
-
-.tw {
-  animation: twinkle 3.4s ease-in-out infinite;
-}
-
-.blinker {
-  animation: blinkred 1.6s steps(1) infinite;
-}
-
-.cloud-drift {
-  animation: drift 22s ease-in-out infinite;
-}
-
-.plane-fly {
-  animation: flyby 38s linear infinite;
-}
-
-.city-pulsing {
-  animation: citypulse 0.682s ease-in-out infinite;
-}
-
-/* ---------- dj deck ---------- */
-
-.record {
-  background:
-    repeating-radial-gradient(
-      circle at 50% 50%,
-      #101010 0px,
-      #101010 3px,
-      #1b1b1b 4px,
-      #1b1b1b 5px
-    );
-}
-
-.record.spinning {
-  animation: spinrecord 1.36s linear infinite;
-}
-
-input[type="range"].xfader {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 100%;
-  height: 30px;
-  background: transparent;
-  cursor: ew-resize;
-}
-
-input[type="range"].xfader::-webkit-slider-runnable-track {
-  height: 6px;
-  border-radius: 3px;
-  background: #0a0a0a;
-  border: 1px solid #262626;
-}
-
-input[type="range"].xfader::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  width: 18px;
-  height: 26px;
-  margin-top: -11px;
-  border-radius: 3px;
-  background: #d4d4d4;
-  border: 1px solid #0a0a0a;
-}
-
-input[type="range"].xfader::-moz-range-track {
-  height: 6px;
-  border-radius: 3px;
-  background: #0a0a0a;
-  border: 1px solid #262626;
-}
-
-input[type="range"].xfader::-moz-range-thumb {
-  width: 18px;
-  height: 26px;
-  border-radius: 3px;
-  background: #d4d4d4;
-  border: 1px solid #0a0a0a;
-}
