@@ -23,8 +23,8 @@ const experience = [
   },
   {
     role: "AI/ML Researcher",
-    company: "[Add employer]",
-    location: "",
+    company: "University of Virginia",
+    location: "Charlottesville, VA",
     period: "Jan to May 2026",
     description: "Deep learning and generative AI.",
   },
