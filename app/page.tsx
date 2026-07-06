@@ -10,7 +10,8 @@ const experience = [
     company: "BNSF Railway",
     location: "Fort Worth, TX",
     period: "Summer 2026",
-    description: "Incoming summer 2026, June 1st to July 31st.",
+    description:
+      "Modernizing legacy Java batch applications from WebSphere to Spring Boot on OpenShift, including a 20-year-old scheduling system behind a $1B+ annual capital program.",
   },
   {
     role: "Software Developer Intern",
@@ -19,6 +20,13 @@ const experience = [
     period: "Apr 2026 to present",
     description:
       "Building LLM gateways and IoT edge systems for production agentic AI workflows.",
+  },
+  {
+    role: "AI/ML Researcher",
+    company: "[Add employer]",
+    location: "",
+    period: "Jan to May 2026",
+    description: "Deep learning and generative AI.",
   },
   {
     role: "AI Developer Intern",
@@ -193,7 +201,7 @@ function Experience() {
                   {item.role}
                 </h3>
                 <p className="mt-0.5 text-sm text-muted">
-                  {item.company} · {item.location}
+                  {[item.company, item.location].filter(Boolean).join(" · ")}
                 </p>
                 <p className="mt-2 text-sm text-muted leading-relaxed max-w-xl">
                   {item.description}
