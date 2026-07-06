@@ -1,5 +1,4 @@
 import { ArrowUpRight } from "lucide-react";
-import Hero from "./components/hero";
 import { Reveal, SectionHead } from "./components/reveal";
 
 /* ---------------- data ---------------- */
@@ -92,7 +91,7 @@ const skills = [
 const offTheClock = [
   {
     title: "Music",
-    blurb: "Always on. The deck up top is the dream setup.",
+    blurb: "Always on, from lo-fi to house depending on the hour.",
   },
   {
     title: "Powerlifting",
@@ -110,6 +109,39 @@ const offTheClock = [
 
 /* ---------------- sections ---------------- */
 
+function Hero() {
+  return (
+    <section id="top" className="mx-auto max-w-5xl px-4 sm:px-8 pt-36 sm:pt-44 pb-10 sm:pb-14">
+      <div className="max-w-2xl">
+        <h1 className="font-display text-4xl sm:text-6xl font-semibold tracking-tight">
+          Tyler Nguyen
+        </h1>
+        <p className="mt-4 text-base sm:text-lg text-muted leading-relaxed">
+          CS + math at the University of Virginia. I build full-stack and AI
+          things, and I&apos;m looking for a summer 2027 SWE internship.
+        </p>
+        <div className="mt-7 flex items-center gap-4">
+          <a
+            href="#projects"
+            className="rounded-full bg-ink px-4 py-2 text-sm font-medium text-bg hover:bg-white transition-colors"
+          >
+            View projects
+          </a>
+          <a
+            href="/Tyler_Resume_May28 (1).pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1 text-sm text-muted hover:text-ink transition-colors"
+          >
+            Résumé
+            <ArrowUpRight size={14} aria-hidden />
+          </a>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function About() {
   return (
     <section id="about" className="mx-auto max-w-5xl px-4 sm:px-8 py-24 sm:py-32 scroll-mt-16">
@@ -125,11 +157,6 @@ function About() {
             I&apos;m most interested in full-stack development, AI engineering,
             and building things that solve real problems, ideally the kind
             people actually use the next morning.
-          </p>
-          <p>
-            This page is set in a warehouse with a skyline view because
-            that&apos;s roughly where my head lives at 1am: some city, some
-            music, some code that almost works.
           </p>
         </Reveal>
 
@@ -295,8 +322,7 @@ function Footer() {
             ))}
           </div>
           <p className="mt-14 text-xs text-muted">
-            © {new Date().getFullYear()} Tyler Nguyen · Built with Next.js. The
-            beats are synthesized in your browser, no audio files involved.
+            © {new Date().getFullYear()} Tyler Nguyen · Built with Next.js
           </p>
         </Reveal>
       </div>
