@@ -141,7 +141,7 @@ export default function Pickleball() {
   return (
     <div ref={scope} className="mx-auto max-w-5xl px-4 sm:px-8">
       <svg
-        viewBox="0 0 560 150"
+        viewBox="0 -30 560 180"
         role="img"
         aria-label="Two penguins playing pickleball; the rally follows your scrolling"
         className="mx-auto block w-full max-w-lg"
