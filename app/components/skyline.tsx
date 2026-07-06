@@ -112,9 +112,9 @@ export default function Skyline({
     >
       <defs>
         <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor="#171a3e" />
-          <stop offset="60%" stopColor="#292b5c" />
-          <stop offset="100%" stopColor="#4b3a70" />
+          <stop offset="0%" stopColor="#0e1220" />
+          <stop offset="60%" stopColor="#1b2238" />
+          <stop offset="100%" stopColor="#2d3752" />
         </linearGradient>
         <radialGradient id="moonglow">
           <stop offset="0%" stopColor="#f5f0d8" stopOpacity="0.5" />
@@ -147,7 +147,7 @@ export default function Skyline({
       <circle cx="670" cy="58" r="2.5" fill="#e3ddb9" />
 
       {/* clouds */}
-      <g className="cloud-drift" opacity="0.55" fill="#31346b">
+      <g className="cloud-drift" opacity="0.55" fill="#28304a">
         <ellipse cx="150" cy="70" rx="46" ry="13" />
         <ellipse cx="185" cy="60" rx="30" ry="11" />
         <ellipse cx="120" cy="62" rx="26" ry="9" />
@@ -156,7 +156,7 @@ export default function Skyline({
         className="cloud-drift"
         style={{ animationDelay: "-9s", animationDuration: "30s" }}
         opacity="0.4"
-        fill="#31346b"
+        fill="#28304a"
       >
         <ellipse cx="450" cy="110" rx="52" ry="12" />
         <ellipse cx="490" cy="100" rx="28" ry="10" />
@@ -175,14 +175,14 @@ export default function Skyline({
       {/* far silhouette */}
       <path
         d="M0 320 L0 285 L40 285 L40 265 L75 265 L75 292 L120 292 L120 255 L128 255 L128 240 L136 240 L136 255 L175 255 L175 285 L215 285 L215 250 L260 250 L260 275 L300 275 L300 235 L306 235 L306 220 L312 220 L312 235 L350 235 L350 280 L400 280 L400 258 L445 258 L445 288 L490 288 L490 245 L540 245 L540 272 L585 272 L585 252 L635 252 L635 285 L680 285 L680 262 L730 262 L730 290 L800 290 L800 320 Z"
-        fill="#232649"
+        fill="#1e2437"
       />
 
       {/* mid layer */}
       <g>
         {MID.map((b, i) => (
           <g key={i}>
-            <rect x={b.x} y={340 - b.h} width={b.w} height={b.h} fill="#1d2044" />
+            <rect x={b.x} y={340 - b.h} width={b.w} height={b.h} fill="#171c2e" />
             <Windows
               b={b}
               bi={i + 40}
@@ -197,10 +197,10 @@ export default function Skyline({
 
       {/* empire state-ish tower */}
       <g>
-        <rect x="495" y="185" width="72" height="155" fill="#161832" />
-        <rect x="509" y="140" width="44" height="50" fill="#161832" />
-        <rect x="523" y="112" width="16" height="32" fill="#161832" />
-        <line x1="531" y1="80" x2="531" y2="112" stroke="#161832" strokeWidth="3" />
+        <rect x="495" y="185" width="72" height="155" fill="#121627" />
+        <rect x="509" y="140" width="44" height="50" fill="#121627" />
+        <rect x="523" y="112" width="16" height="32" fill="#121627" />
+        <line x1="531" y1="80" x2="531" y2="112" stroke="#121627" strokeWidth="3" />
         <circle cx="531" cy="78" r="3.2" fill="#e53170" className="blinker" />
         <g className={playing ? "city-pulsing" : undefined} style={pulse}>
           <rect x="509" y="142" width="44" height="6" fill="#ffd803" opacity="0.85" />
@@ -217,7 +217,7 @@ export default function Skyline({
             y={420 - b.h - 30}
             width={b.w}
             height={b.h + 30}
-            fill="#12142c"
+            fill="#0d101e"
           />
         ))}
         <g className={playing ? "city-pulsing" : undefined} style={pulse}>

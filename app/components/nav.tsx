@@ -1,70 +1,48 @@
-"use client";
-
-import { motion, useScroll } from "framer-motion";
+import { ArrowUpRight } from "lucide-react";
 
 const anchors = [
-  { href: "#about", label: "about" },
-  { href: "#experience", label: "experience" },
-  { href: "#projects", label: "projects" },
-  { href: "#bside", label: "b-side" },
-];
-
-const socials = [
-  { href: "https://github.com/tyl3rn", label: "github" },
-  { href: "https://linkedin.com/in/tyler-nguyen2028", label: "linkedin" },
-  { href: "/Tyler_Resume_May28 (1).pdf", label: "resume" },
+  { href: "#about", label: "About" },
+  { href: "#experience", label: "Experience" },
+  { href: "#projects", label: "Projects" },
 ];
 
 export default function Nav() {
-  const { scrollYProgress } = useScroll();
-
   return (
-    <>
-      {/* scroll progress, styled like a track playhead */}
-      <motion.div
-        style={{ scaleX: scrollYProgress }}
-        className="fixed top-0 left-0 right-0 h-[3px] z-50 origin-left bg-gradient-to-r from-amber to-glow"
-      />
+    <header className="fixed top-0 inset-x-0 z-40 border-b border-line bg-bg">
+      <nav className="mx-auto max-w-5xl px-4 sm:px-8 h-14 flex items-center justify-between">
+        <a href="#top" className="font-display text-sm font-medium text-ink">
+          Tyler Nguyen
+        </a>
 
-      <header className="fixed top-4 left-1/2 -translate-x-1/2 z-40 w-[calc(100%-2rem)] max-w-3xl">
-        <nav className="flex items-center justify-between gap-4 rounded-full border border-liney bg-night/70 backdrop-blur-md px-5 py-2.5 shadow-[0_8px_30px_rgba(0,0,0,0.4)]">
+        <div className="flex items-center gap-5 sm:gap-7">
+          {anchors.map(({ href, label }) => (
+            <a
+              key={href}
+              href={href}
+              className="hidden sm:block text-sm text-muted hover:text-ink transition-colors"
+            >
+              {label}
+            </a>
+          ))}
           <a
-            href="#top"
-            className="font-display font-bold text-sm tracking-tight text-ink whitespace-nowrap"
+            href="https://github.com/tyl3rn"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1 text-sm text-muted hover:text-ink transition-colors"
           >
-            tyler.n
+            GitHub
+            <ArrowUpRight size={13} aria-hidden />
           </a>
-
-          <div className="hidden sm:flex items-center gap-4">
-            {anchors.map(({ href, label }) => (
-              <a
-                key={href}
-                href={href}
-                className="text-xs text-muted hover:text-ink transition-colors"
-              >
-                {label}
-              </a>
-            ))}
-          </div>
-
-          <div className="flex items-center gap-3">
-            {socials.map(({ href, label }) => (
-              <a
-                key={href}
-                href={href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group text-xs text-muted hover:text-ink transition-colors flex items-center gap-0.5"
-              >
-                <span className="inline-block transition-transform duration-200 ease-out group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
-                  ↗
-                </span>
-                {label}
-              </a>
-            ))}
-          </div>
-        </nav>
-      </header>
-    </>
+          <a
+            href="/Tyler_Resume_May28 (1).pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="rounded-full bg-ink px-3.5 py-1.5 text-sm font-medium text-bg hover:bg-white transition-colors"
+          >
+            Resume
+          </a>
+        </div>
+      </nav>
+    </header>
   );
 }

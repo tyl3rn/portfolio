@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Space_Grotesk, Caveat } from "next/font/google";
+import { Inter, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import Nav from "./components/nav";
 
@@ -12,19 +12,13 @@ const inter = Inter({
 const grotesk = Space_Grotesk({
   variable: "--font-grotesk",
   subsets: ["latin"],
-  weight: ["400", "500", "700"],
-});
-
-const caveat = Caveat({
-  variable: "--font-caveat",
-  subsets: ["latin"],
-  weight: ["500", "700"],
+  weight: ["400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
   title: "Tyler Nguyen",
   description:
-    "CS + math at UVA. Builds full-stack things, occasionally pretends to DJ.",
+    "CS + math at UVA. Builds full-stack and AI things. Seeking summer 2027 SWE internships.",
 };
 
 export default function RootLayout({
@@ -36,9 +30,9 @@ export default function RootLayout({
     <html
       lang="en"
       data-scroll-behavior="smooth"
-      className={`${inter.variable} ${grotesk.variable} ${caveat.variable}`}
+      className={`${inter.variable} ${grotesk.variable}`}
     >
-      <body className="bg-night text-ink antialiased">
+      <body className="bg-bg text-ink antialiased">
         <Nav />
         <main>{children}</main>
       </body>

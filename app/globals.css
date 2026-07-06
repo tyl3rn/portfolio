@@ -1,30 +1,29 @@
 @import "tailwindcss";
 
+/* 70/20/10: neutral concrete grays carry the page, the skyline
+   illustration is the complementary layer, amber is the only accent. */
 :root {
-  --night: #0f0e17;
-  --wall: #191729;
-  --wall-2: #221f3a;
-  --ink: #fffffe;
-  --muted: #a7a9be;
-  --line: rgba(255, 255, 254, 0.08);
-  --amber: #ff8906;
-  --glow: #ffd803;
-  --cream: #f5e9c9;
+  --bg: #0a0a0a;
+  --panel: #141414;
+  --panel-2: #1c1c1c;
+  --line: #262626;
+  --ink: #ededed;
+  --muted: #8f8f98;
+  --accent: #ff8906;
+  --glow: #ffd803; /* skyline window lights only */
 }
 
 @theme inline {
-  --color-night: var(--night);
-  --color-wall: var(--wall);
-  --color-wall2: var(--wall-2);
+  --color-bg: var(--bg);
+  --color-panel: var(--panel);
+  --color-panel2: var(--panel-2);
+  --color-line: var(--line);
   --color-ink: var(--ink);
   --color-muted: var(--muted);
-  --color-liney: var(--line);
-  --color-amber: var(--amber);
+  --color-accent: var(--accent);
   --color-glow: var(--glow);
-  --color-cream: var(--cream);
   --font-sans: var(--font-inter);
   --font-display: var(--font-grotesk);
-  --font-hand: var(--font-caveat);
 }
 
 html {
@@ -32,7 +31,7 @@ html {
 }
 
 body {
-  background: var(--night);
+  background: var(--bg);
   color: var(--ink);
   font-family: var(--font-inter), Inter, ui-sans-serif, system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -40,19 +39,8 @@ body {
 }
 
 ::selection {
-  background: var(--grape);
-  color: var(--ink);
-}
-
-/* film grain over everything, purely decorative */
-body::after {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: 80;
-  pointer-events: none;
-  opacity: 0.05;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+  background: var(--accent);
+  color: #0a0a0a;
 }
 
 /* ---------- keyframes ---------- */
@@ -72,11 +60,6 @@ body::after {
   to { transform: rotate(360deg); }
 }
 
-@keyframes marquee {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
-}
-
 @keyframes drift {
   0%, 100% { transform: translateX(0); }
   50% { transform: translateX(46px); }
@@ -92,24 +75,10 @@ body::after {
   50% { opacity: 0.55; }
 }
 
-@keyframes bob {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(7px); }
-}
-
-@keyframes glimmer {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.72; }
-}
-
 /* ---------- skyline ---------- */
 
 .tw {
   animation: twinkle 3.4s ease-in-out infinite;
-}
-
-.glim {
-  animation: glimmer 3.8s ease-in-out infinite;
 }
 
 .blinker {
@@ -125,11 +94,22 @@ body::after {
 }
 
 .city-pulsing {
-  animation: citypulse 0.682s ease-in-out infinite; /* one beat at 88 bpm */
+  animation: citypulse 0.682s ease-in-out infinite;
 }
 
-.scroll-cue {
-  animation: bob 1.6s ease-in-out infinite;
+/* ---------- warehouse ---------- */
+
+/* poured-concrete wall: flat dark gray with a faint aggregate texture */
+.concrete {
+  background-color: #151515;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='3'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+}
+
+/* steel factory-window mullions over the glass */
+.mullions {
+  background-image:
+    repeating-linear-gradient(to right, #1c1c1c 0 3px, transparent 3px 108px),
+    repeating-linear-gradient(to bottom, #1c1c1c 0 3px, transparent 3px 88px);
 }
 
 /* ---------- dj deck ---------- */
@@ -138,10 +118,10 @@ body::after {
   background:
     repeating-radial-gradient(
       circle at 50% 50%,
-      #17151f 0px,
-      #17151f 3px,
-      #221f2e 4px,
-      #221f2e 5px
+      #101010 0px,
+      #101010 3px,
+      #1b1b1b 4px,
+      #1b1b1b 5px
     );
 }
 
@@ -161,8 +141,8 @@ input[type="range"].xfader {
 input[type="range"].xfader::-webkit-slider-runnable-track {
   height: 6px;
   border-radius: 3px;
-  background: #0c0b14;
-  border: 1px solid rgba(255, 255, 254, 0.12);
+  background: #0a0a0a;
+  border: 1px solid #262626;
 }
 
 input[type="range"].xfader::-webkit-slider-thumb {
@@ -170,30 +150,22 @@ input[type="range"].xfader::-webkit-slider-thumb {
   width: 18px;
   height: 26px;
   margin-top: -11px;
-  border-radius: 4px;
-  background: linear-gradient(180deg, #f5f0e8, #b9b3c9);
-  border: 1px solid #0c0b14;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
+  border-radius: 3px;
+  background: #d4d4d4;
+  border: 1px solid #0a0a0a;
 }
 
 input[type="range"].xfader::-moz-range-track {
   height: 6px;
   border-radius: 3px;
-  background: #0c0b14;
-  border: 1px solid rgba(255, 255, 254, 0.12);
+  background: #0a0a0a;
+  border: 1px solid #262626;
 }
 
 input[type="range"].xfader::-moz-range-thumb {
   width: 18px;
   height: 26px;
-  border-radius: 4px;
-  background: linear-gradient(180deg, #f5f0e8, #b9b3c9);
-  border: 1px solid #0c0b14;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
-}
-
-/* ---------- marquee ---------- */
-
-.marquee-track {
-  animation: marquee 28s linear infinite;
+  border-radius: 3px;
+  background: #d4d4d4;
+  border: 1px solid #0a0a0a;
 }
