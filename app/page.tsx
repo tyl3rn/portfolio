@@ -149,8 +149,9 @@ function About() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16">
         <Reveal className="flex flex-col gap-5 text-sm sm:text-base text-muted leading-relaxed">
           <p>
-            Hey, I&apos;m Tyler. I&apos;m a third-year at the University of
-            Virginia double majoring in computer science and mathematics.
+            Hey, I&apos;m Tyler. I&apos;m from Virginia Beach, VA, and a
+            third-year at the University of Virginia double majoring in
+            computer science and mathematics.
           </p>
           <p>
             I&apos;m most interested in full-stack development, AI engineering,
