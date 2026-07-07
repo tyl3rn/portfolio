@@ -1,5 +1,3 @@
-import { existsSync } from "fs";
-import { join } from "path";
 import type { Metadata } from "next";
 import Link from "next/link";
 import Deadlift from "../components/deadlift";
@@ -12,8 +10,9 @@ export const metadata: Metadata = {
 
 const offTheClock = [
   {
-    title: "Music",
-    blurb: "Always on, from lo-fi to house depending on the hour.",
+    title: "Concerts",
+    blurb:
+      "Currently have seen Laufey, 21 Savage, Swae Lee, Quavo, and Blood Orange.",
   },
   {
     title: "Powerlifting",
@@ -21,33 +20,66 @@ const offTheClock = [
   },
   {
     title: "Pickleball",
-    blurb: "Unreasonably competitive for a casual sport.",
+    blurb: "I take this sport way too competitively.",
   },
   {
-    title: "Friends",
-    blurb: "Most of these projects started as 2am ideas with them.",
+    title: "Videogames",
+    blurb:
+      "Grinded Minecraft PvP in middle school then peaked Immortal 3 in Valorant in high school",
   },
 ];
 
-// Drop cover art into public/albums with these file names (jpg, png,
-// or webp) and it appears automatically.
-const albums = [
-  { title: "Disillusioned", artist: "Daniel Caesar", file: "disillusioned" },
-  { title: "Actual Life 3", artist: "Fred again..", file: "actual-life-3" },
+const songs = [
+  {
+    title: "Disillusioned (with serpentwithfeet)",
+    artist: "Daniel Caesar, serpentwithfeet",
+    art: "/disillusioned.jpg",
+  },
+  {
+    title: "X's",
+    artist: "Cigarettes After Sex",
+    art: "/cigarettesaftersex.jpg",
+  },
+  {
+    title: "Danielle (smile on my face)",
+    artist: "Fred again..",
+    art: "/danielle.jpg",
+  },
+  {
+    title: "7 Summers",
+    artist: "Morgan Wallen",
+    art: "/7summers.png",
+  },
+  {
+    title: "DON'T BELIEVE IT",
+    artist: "John Summit, Absolutely",
+    art: "/dontbelieveit.jpg",
+  },
+  {
+    title: "Ivy",
+    artist: "Frank Ocean",
+    art: "/ivy.jpg",
+  },
+  {
+    title: "Pool House",
+    artist: "The Backseat Lovers",
+    art: "/poolhouse.jpg",
+  },
+  {
+    title: "Bad Girls",
+    artist: "Blood Orange",
+    art: "/badgirls.jpg",
+  },
 ];
 
-function findArt(base: string): string | null {
-  for (const ext of ["jpg", "png", "webp"]) {
-    if (existsSync(join(process.cwd(), "public", "albums", `${base}.${ext}`))) {
-      return `/albums/${base}.${ext}`;
-    }
-  }
-  return null;
-}
-
-// Add photos to public/photos and list them here, e.g.
-// { src: "/photos/tokyo.jpg", alt: "Shibuya crossing at night" }
-const photos: { src: string; alt: string }[] = [];
+const photos = [
+  { src: "/pic1.jpg", alt: "Photography 1" },
+  { src: "/pic2.jpg", alt: "Photography 2" },
+  { src: "/pic3.jpg", alt: "Photography 3" },
+  { src: "/pic4.jpg", alt: "Photography 4" },
+  { src: "/pic5.jpg", alt: "Photography 5" },
+  { src: "/pic6.jpg", alt: "Photography 6" },
+];
 
 export default function Personal() {
   return (
@@ -94,37 +126,26 @@ export default function Personal() {
 
       <section className="mx-auto max-w-5xl px-4 sm:px-8 py-20 sm:py-24">
         <SectionHead no="02" title="Music" />
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 sm:gap-10 max-w-3xl mx-auto">
-          {albums.map((album, i) => {
-            const art = findArt(album.file);
-            return (
-              <Reveal key={album.title} delay={i * 0.08}>
-                {art ? (
-                  // eslint-disable-next-line @next/next/no-img-element
-                  <img
-                    src={art}
-                    alt={`${album.title} album cover`}
-                    className="aspect-square w-full object-cover border border-line"
-                  />
-                ) : (
-                  <div className="aspect-square w-full border border-line bg-panel grid place-items-center p-6 text-center">
-                    <span className="text-xs text-muted">
-                      add public/albums/{album.file}.jpg
-                    </span>
-                  </div>
-                )}
-                <h3 className="mt-3 text-sm sm:text-base font-medium text-ink">
-                  {album.title}
-                </h3>
-                <p className="mt-0.5 text-sm text-muted">{album.artist}</p>
-              </Reveal>
-            );
-          })}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10">
+          {songs.map((song, i) => (
+            <Reveal key={song.title} delay={i * 0.08}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={song.art}
+                alt={`${song.title} cover art`}
+                className="aspect-square w-full object-cover border border-line"
+              />
+              <h3 className="mt-3 text-sm sm:text-base font-medium text-ink">
+                {song.title}
+              </h3>
+              <p className="mt-0.5 text-sm text-muted">{song.artist}</p>
+            </Reveal>
+          ))}
         </div>
       </section>
 
       <section className="mx-auto max-w-5xl px-4 sm:px-8 py-20 sm:py-24 pb-28 sm:pb-36">
-        <SectionHead no="03" title="Travel" />
+        <SectionHead no="03" title="Photography" />
         {photos.length > 0 ? (
           <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
             {photos.map(({ src, alt }) => (
