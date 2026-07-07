@@ -129,22 +129,30 @@ function Hero() {
           CS + math at the University of Virginia. I build full-stack and AI
           things, and I&apos;m looking for a summer 2027 SWE internship.
         </p>
-        <div className="mt-7 flex items-center gap-4">
-          <a
-            href="#projects"
-            className="rounded-full bg-ink px-4 py-2 text-sm font-medium text-bg hover:bg-white transition-colors"
-          >
-            View projects
-          </a>
-          <a
-            href="/Tyler_Resume.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-1 text-sm text-muted hover:text-ink transition-colors"
-          >
-            Résumé
-            <ArrowUpRight size={14} aria-hidden />
-          </a>
+        <div className="mt-8 flex flex-wrap items-center gap-3">
+          {[
+            { href: "#experience", label: "Experience", external: false },
+            { href: "#projects", label: "Projects", external: false },
+            { href: "https://github.com/tyl3rn", label: "GitHub", external: true },
+            {
+              href: "https://linkedin.com/in/tyler-nguyen2028",
+              label: "LinkedIn",
+              external: true,
+            },
+            { href: "/Tyler_Resume.pdf", label: "Résumé", external: true },
+          ].map((link) => (
+            <a
+              key={link.label}
+              href={link.href}
+              {...(link.external
+                ? { target: "_blank", rel: "noopener noreferrer" }
+                : {})}
+              className="inline-flex items-center gap-1 rounded-full bg-ink px-4 py-2 text-sm font-medium text-bg hover:bg-white transition-colors"
+            >
+              {link.label}
+              {link.external && <ArrowUpRight size={14} aria-hidden />}
+            </a>
+          ))}
         </div>
       </div>
     </section>
@@ -313,24 +321,12 @@ function Footer() {
           <h2 className="font-display text-3xl sm:text-5xl font-semibold tracking-tight">
             Let&apos;s make something.
           </h2>
-          <div className="mt-8 flex flex-wrap gap-6">
-            {[
-              { href: "https://github.com/tyl3rn", label: "GitHub" },
-              { href: "https://linkedin.com/in/tyler-nguyen2028", label: "LinkedIn" },
-              { href: "/Tyler_Resume.pdf", label: "Résumé" },
-            ].map((link) => (
-              <a
-                key={link.label}
-                href={link.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1 text-sm text-muted hover:text-ink transition-colors"
-              >
-                {link.label}
-                <ArrowUpRight size={14} aria-hidden />
-              </a>
-            ))}
-          </div>
+          <a
+            href="mailto:wgq4tr@virginia.edu"
+            className="mt-8 inline-block font-display text-xl sm:text-2xl text-ink hover:text-muted transition-colors"
+          >
+            wgq4tr@virginia.edu
+          </a>
           <p className="mt-14 text-xs text-muted">
             © {new Date().getFullYear()} Tyler Nguyen · Built with Next.js
           </p>
