@@ -97,25 +97,6 @@ const skills = [
   },
 ];
 
-const offTheClock = [
-  {
-    title: "Music",
-    blurb: "Always on, from lo-fi to house depending on the hour.",
-  },
-  {
-    title: "Powerlifting",
-    blurb: "Chasing numbers that go up slower than my commit count.",
-  },
-  {
-    title: "Pickleball",
-    blurb: "Unreasonably competitive for a casual sport.",
-  },
-  {
-    title: "Friends",
-    blurb: "Most of these projects started as 2am ideas with them.",
-  },
-];
-
 /* ---------------- sections ---------------- */
 
 function Hero() {
@@ -129,22 +110,23 @@ function Hero() {
           CS + math at the University of Virginia. I build full-stack and AI
           things, and I&apos;m looking for a summer 2027 SWE internship.
         </p>
-        <div className="mt-7 flex items-center gap-4">
-          <a
-            href="#projects"
-            className="rounded-full bg-ink px-4 py-2 text-sm font-medium text-bg hover:bg-white transition-colors"
-          >
-            View projects
-          </a>
-          <a
-            href="/Tyler_Resume.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-1 text-sm text-muted hover:text-ink transition-colors"
-          >
-            Résumé
-            <ArrowUpRight size={14} aria-hidden />
-          </a>
+        <div className="mt-7 flex flex-wrap items-center gap-5">
+          {[
+            { href: "https://github.com/tyl3rn", label: "GitHub" },
+            { href: "https://linkedin.com/in/tyler-nguyen2028", label: "LinkedIn" },
+            { href: "/Tyler_Resume.pdf", label: "Résumé" },
+          ].map((link) => (
+            <a
+              key={link.label}
+              href={link.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1 text-sm text-muted hover:text-ink transition-colors"
+            >
+              {link.label}
+              <ArrowUpRight size={14} aria-hidden />
+            </a>
+          ))}
         </div>
       </div>
     </section>
@@ -284,27 +266,6 @@ function Projects() {
   );
 }
 
-function OffTheClock() {
-  return (
-    <section id="off-the-clock" className="mx-auto max-w-5xl px-4 sm:px-8 py-24 sm:py-32 scroll-mt-16">
-      <SectionHead no="04" title="Off the clock" />
-
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-10">
-        {offTheClock.map((item, i) => (
-          <Reveal key={item.title} delay={i * 0.06}>
-            <div className="border-t border-line pt-4">
-              <h3 className="text-sm font-medium text-ink">{item.title}</h3>
-              <p className="mt-1.5 text-sm text-muted leading-relaxed">
-                {item.blurb}
-              </p>
-            </div>
-          </Reveal>
-        ))}
-      </div>
-    </section>
-  );
-}
-
 function Footer() {
   return (
     <footer id="contact" className="border-t border-line">
@@ -313,24 +274,13 @@ function Footer() {
           <h2 className="font-display text-3xl sm:text-5xl font-semibold tracking-tight">
             Let&apos;s make something.
           </h2>
-          <div className="mt-8 flex flex-wrap gap-6">
-            {[
-              { href: "https://github.com/tyl3rn", label: "GitHub" },
-              { href: "https://linkedin.com/in/tyler-nguyen2028", label: "LinkedIn" },
-              { href: "/Tyler_Resume.pdf", label: "Résumé" },
-            ].map((link) => (
-              <a
-                key={link.label}
-                href={link.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1 text-sm text-muted hover:text-ink transition-colors"
-              >
-                {link.label}
-                <ArrowUpRight size={14} aria-hidden />
-              </a>
-            ))}
-          </div>
+          <a
+            href="mailto:wgq4tr@virginia.edu"
+            className="mt-8 inline-flex items-center gap-2 font-display text-xl sm:text-2xl text-muted hover:text-ink transition-colors"
+          >
+            wgq4tr@virginia.edu
+            <ArrowUpRight size={20} aria-hidden />
+          </a>
           <p className="mt-14 text-xs text-muted">
             © {new Date().getFullYear()} Tyler Nguyen · Built with Next.js
           </p>
@@ -350,7 +300,6 @@ export default function Home() {
       <About />
       <Experience />
       <Projects />
-      <OffTheClock />
       <Footer />
     </>
   );
