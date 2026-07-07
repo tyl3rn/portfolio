@@ -1,6 +1,7 @@
 import { existsSync } from "fs";
 import { join } from "path";
 import type { Metadata } from "next";
+import Link from "next/link";
 import Deadlift from "../components/deadlift";
 import { Reveal, SectionHead } from "../components/reveal";
 
@@ -56,6 +57,25 @@ export default function Personal() {
           <h1 className="font-display text-4xl sm:text-6xl font-semibold tracking-tight">
             Personal
           </h1>
+          {/* invisible copy of the home-page blurb: it reserves the same
+              height so the Home button sits exactly where the Personal
+              button was, and you can toggle pages without moving the
+              cursor */}
+          <p
+            aria-hidden
+            className="invisible select-none mt-4 text-base sm:text-lg leading-relaxed"
+          >
+            CS + math at the University of Virginia. I build full-stack and AI
+            things, and I&apos;m looking for a summer 2027 SWE internship.
+          </p>
+          <div className="mt-7 flex flex-wrap items-center gap-5">
+            <Link
+              href="/"
+              className="inline-flex min-w-[6.5rem] justify-center rounded-full bg-ink px-4 py-2 text-sm font-medium text-bg hover:bg-white transition-colors"
+            >
+              Home
+            </Link>
+          </div>
         </div>
       </section>
 

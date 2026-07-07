@@ -1,4 +1,5 @@
 import { ArrowUpRight } from "lucide-react";
+import Link from "next/link";
 import Pickleball from "./components/pickleball";
 import { Reveal, SectionHead } from "./components/reveal";
 
@@ -111,6 +112,12 @@ function Hero() {
           things, and I&apos;m looking for a summer 2027 SWE internship.
         </p>
         <div className="mt-7 flex flex-wrap items-center gap-5">
+          <Link
+            href="/personal"
+            className="inline-flex min-w-[6.5rem] justify-center rounded-full bg-ink px-4 py-2 text-sm font-medium text-bg hover:bg-white transition-colors"
+          >
+            Personal
+          </Link>
           {[
             { href: "https://github.com/tyl3rn", label: "GitHub" },
             { href: "https://linkedin.com/in/tyler-nguyen2028", label: "LinkedIn" },
