@@ -114,7 +114,7 @@ function Hero() {
         <div className="mt-7 flex flex-wrap items-center gap-5">
           <Link
             href="/personal"
-            className="inline-flex min-w-[6.5rem] justify-center rounded-full bg-ink px-4 py-2 text-sm font-medium text-bg hover:bg-white transition-colors"
+            className="inline-flex min-w-[6.5rem] justify-center rounded-full bg-ink px-4 py-2 text-sm font-medium text-bg hover:opacity-80 transition-opacity"
           >
             Personal
           </Link>
@@ -224,7 +224,7 @@ function Projects() {
                   className="w-full h-full object-cover object-top"
                 />
               ) : (
-                <div className="w-full h-full grid place-items-center bg-[#f4f4f5]">
+                <div className="w-full h-full grid place-items-center bg-panel2">
                   <span className="font-display text-3xl sm:text-4xl font-bold tracking-tight">
                     <span style={{ color: "#232d4b" }}>Cav</span>
                     <span style={{ color: "#e57200" }}>Rec</span>

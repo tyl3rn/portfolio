@@ -24,21 +24,21 @@ const experience = [
 export default function Experience() {
   return (
     <div className="flex flex-col gap-10 pt-2">
-      <p className="font-mono text-[10px] text-neutral-400 uppercase tracking-widest">
+      <p className="font-mono text-[10px] text-muted uppercase tracking-widest">
         experience
       </p>
 
       <div className="flex flex-col">
         {experience.map((item, i) => (
           <div key={i}>
-            {i > 0 && <hr className="border-neutral-200 my-8" />}
+            {i > 0 && <hr className="border-line my-8" />}
             <div className="flex flex-col gap-1.5">
               <div className="flex items-baseline justify-between gap-4">
                 <p className="text-sm font-medium">{item.role}</p>
-                <p className="font-mono text-[10px] text-neutral-400 shrink-0">{item.period}</p>
+                <p className="font-mono text-[10px] text-muted shrink-0">{item.period}</p>
               </div>
-              <p className="font-mono text-[10px] text-neutral-400">{item.company}</p>
-              <p className="text-sm text-neutral-500 leading-relaxed mt-2">
+              <p className="font-mono text-[10px] text-muted">{item.company}</p>
+              <p className="text-sm text-muted leading-relaxed mt-2">
                 {item.description}
               </p>
             </div>

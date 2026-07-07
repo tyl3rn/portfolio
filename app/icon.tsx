@@ -22,56 +22,22 @@ export default function Icon() {
       >
         <div
           style={{
-            alignItems: "center",
-            background: "#f3f4f6",
-            borderRadius: "50%",
+            background: "#f5f5f5",
+            borderRadius: "50% 50% 45% 45%",
             display: "flex",
-            height: 27,
-            justifyContent: "center",
+            height: 24,
             position: "relative",
-            width: 27,
+            width: 24,
           }}
         >
           <div
             style={{
               background: "#111827",
               borderRadius: "50%",
-              height: 18,
-              left: 1,
-              position: "absolute",
-              top: 4,
-              width: 11,
-            }}
-          />
-          <div
-            style={{
-              background: "#111827",
-              borderRadius: "50%",
-              height: 18,
-              position: "absolute",
-              right: 1,
-              top: 4,
-              width: 11,
-            }}
-          />
-          <div
-            style={{
-              background: "#f3f4f6",
-              borderRadius: "50%",
-              height: 20,
-              position: "absolute",
-              top: 3,
-              width: 15,
-            }}
-          />
-          <div
-            style={{
-              background: "#111827",
-              borderRadius: "50%",
               height: 3,
-              left: 9,
+              left: 6,
               position: "absolute",
-              top: 11,
+              top: 9,
               width: 3,
             }}
           />
@@ -81,8 +47,8 @@ export default function Icon() {
               borderRadius: "50%",
               height: 3,
               position: "absolute",
-              right: 9,
-              top: 11,
+              right: 6,
+              top: 9,
               width: 3,
             }}
           />
@@ -93,7 +59,8 @@ export default function Icon() {
               borderTop: "5px solid #ff8906",
               height: 0,
               position: "absolute",
-              top: 15,
+              left: 8,
+              top: 14,
               width: 0,
             }}
           />

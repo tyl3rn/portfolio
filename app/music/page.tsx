@@ -10,38 +10,38 @@ const artists = [
 export default function Music() {
   return (
     <div className="flex flex-col gap-10 pt-2">
-      <p className="font-mono text-[10px] text-neutral-400 uppercase tracking-widest">music</p>
+      <p className="font-mono text-[10px] text-muted uppercase tracking-widest">music</p>
 
       <div className="flex flex-col gap-3">
-        <p className="font-mono text-[10px] text-neutral-400 uppercase tracking-widest">
+        <p className="font-mono text-[10px] text-muted uppercase tracking-widest">
           currently listening
         </p>
-        <div className="border border-neutral-200 p-4 flex flex-col gap-1">
+        <div className="border border-line p-4 flex flex-col gap-1">
           <p className="text-sm font-medium">[song title]</p>
-          <p className="font-mono text-[10px] text-neutral-400">[artist], [album]</p>
+          <p className="font-mono text-[10px] text-muted">[artist], [album]</p>
         </div>
       </div>
 
-      <hr className="border-neutral-200" />
+      <hr className="border-line" />
 
       <div className="flex flex-col gap-3">
-        <p className="font-mono text-[10px] text-neutral-400 uppercase tracking-widest">
+        <p className="font-mono text-[10px] text-muted uppercase tracking-widest">
           artists i love
         </p>
         <div className="flex flex-col gap-2">
           {artists.map((artist) => (
-            <p key={artist} className="text-sm text-neutral-500">
+            <p key={artist} className="text-sm text-muted">
               {artist}
             </p>
           ))}
         </div>
       </div>
 
-      <hr className="border-neutral-200" />
+      <hr className="border-line" />
 
       <div className="flex flex-col gap-3">
-        <p className="font-mono text-[10px] text-neutral-400 uppercase tracking-widest">vibe</p>
-        <p className="text-sm text-neutral-500 leading-relaxed max-w-sm">
+        <p className="font-mono text-[10px] text-muted uppercase tracking-widest">vibe</p>
+        <p className="text-sm text-muted leading-relaxed max-w-sm">
           [describe your taste: indie, hip-hop, lo-fi, bedroom pop, etc.]
         </p>
       </div>

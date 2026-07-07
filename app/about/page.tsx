@@ -2,8 +2,8 @@ export default function About() {
   return (
     <div className="flex flex-col gap-10 pt-2">
       <div className="flex flex-col gap-3">
-        <p className="font-mono text-[10px] text-neutral-400 uppercase tracking-widest">about</p>
-        <div className="flex flex-col gap-4 text-sm text-neutral-500 leading-relaxed max-w-sm">
+        <p className="font-mono text-[10px] text-muted uppercase tracking-widest">about</p>
+        <div className="flex flex-col gap-4 text-sm text-muted leading-relaxed max-w-sm">
           <p>
             hey! i&apos;m tyler, a 3rd year at uva double majoring in computer science (b.a.)
             and mathematics (b.a.).
@@ -18,22 +18,22 @@ export default function About() {
         </div>
       </div>
 
-      <hr className="border-neutral-200" />
+      <hr className="border-line" />
 
       <div className="flex flex-col gap-4">
-        <p className="font-mono text-[10px] text-neutral-400 uppercase tracking-widest">skills</p>
+        <p className="font-mono text-[10px] text-muted uppercase tracking-widest">skills</p>
         <div className="flex flex-col gap-3 text-sm">
           <div className="flex flex-col gap-1">
-            <p className="font-mono text-[10px] text-neutral-400">languages</p>
-            <p className="text-neutral-500">Python, JavaScript, TypeScript, Java, C</p>
+            <p className="font-mono text-[10px] text-muted">languages</p>
+            <p className="text-muted">Python, JavaScript, TypeScript, Java, C</p>
           </div>
           <div className="flex flex-col gap-1">
-            <p className="font-mono text-[10px] text-neutral-400">frameworks</p>
-            <p className="text-neutral-500">React, Next.js, Node.js</p>
+            <p className="font-mono text-[10px] text-muted">frameworks</p>
+            <p className="text-muted">React, Next.js, Node.js</p>
           </div>
           <div className="flex flex-col gap-1">
-            <p className="font-mono text-[10px] text-neutral-400">tools</p>
-            <p className="text-neutral-500">Git, Linux, SQL</p>
+            <p className="font-mono text-[10px] text-muted">tools</p>
+            <p className="text-muted">Git, Linux, SQL</p>
           </div>
         </div>
       </div>

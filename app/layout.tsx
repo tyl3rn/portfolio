@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, Space_Grotesk } from "next/font/google";
+import ThemeToggle from "./components/theme-toggle";
 import "./globals.css";
 
 const inter = Inter({
@@ -34,9 +35,12 @@ export default function RootLayout({
     <html
       lang="en"
       data-scroll-behavior="smooth"
+      data-theme="dark"
       className={`${inter.variable} ${grotesk.variable}`}
+      suppressHydrationWarning
     >
       <body className="bg-bg text-ink antialiased">
+        <ThemeToggle />
         <main>{children}</main>
       </body>
     </html>
