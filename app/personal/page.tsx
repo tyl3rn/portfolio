@@ -98,7 +98,7 @@ export default function Personal() {
           <div className="mt-7 flex flex-wrap items-center gap-5">
             <Link
               href="/"
-              className="inline-flex min-w-[6.5rem] justify-center rounded-full bg-ink px-4 py-2 text-sm font-medium text-bg hover:bg-white transition-colors"
+              className="inline-flex min-w-[6.5rem] justify-center rounded-full bg-ink px-4 py-2 text-sm font-medium text-bg hover:opacity-80 transition-opacity"
             >
               Home
             </Link>
@@ -125,7 +125,7 @@ export default function Personal() {
       </section>
 
       <section className="mx-auto max-w-5xl px-4 sm:px-8 py-20 sm:py-24">
-        <SectionHead no="02" title="Music" />
+        <SectionHead no="02" title="Currently listening to" />
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10">
           {songs.map((song, i) => (
             <Reveal key={song.title} delay={i * 0.08}>

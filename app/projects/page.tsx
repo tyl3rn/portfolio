@@ -46,13 +46,13 @@ function ThumbnailDisplay({ thumb, title }: { thumb: Thumbnail; title: string })
       <img
         src={thumb.src}
         alt={title}
-        className="w-full aspect-video object-cover object-top border border-neutral-200"
+        className="w-full aspect-video object-cover object-top border border-line"
       />
     );
   }
 
   return (
-    <div className="w-full aspect-video bg-white border border-neutral-200 flex items-center justify-center">
+    <div className="w-full aspect-video bg-panel border border-line flex items-center justify-center">
       <span className="text-3xl font-semibold tracking-tight">
         <span style={{ color: thumb.colors[0] }}>{thumb.primary}</span>
         <span style={{ color: thumb.colors[1] }}>{thumb.secondary}</span>
@@ -65,7 +65,7 @@ export default function Projects() {
   return (
     <PageStagger className="flex flex-col gap-10 pt-2">
       <Fade>
-        <p className="text-sm font-medium text-[#1a1a1a]">projects</p>
+        <p className="text-sm font-medium text-ink">projects</p>
       </Fade>
 
       <GridStagger className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-10">
@@ -75,14 +75,14 @@ export default function Projects() {
 
             <div className="flex flex-col gap-1.5">
               <div className="flex items-baseline justify-between gap-2">
-                <p className="text-sm text-[#1a1a1a]">{project.title}</p>
+                <p className="text-sm text-ink">{project.title}</p>
                 <div className="flex items-center gap-2.5 shrink-0">
-                  <span className="text-xs text-neutral-400">{project.year}</span>
+                  <span className="text-xs text-muted">{project.year}</span>
                   <a
                     href={project.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group text-xs text-neutral-400 hover:text-neutral-800 transition-colors flex items-center gap-0.5"
+                    className="group text-xs text-muted hover:text-ink transition-colors flex items-center gap-0.5"
                   >
                     <span className="inline-block transition-transform duration-200 ease-out group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
                       ↗
@@ -94,7 +94,7 @@ export default function Projects() {
                       href={project.live}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="group text-xs text-neutral-400 hover:text-neutral-800 transition-colors flex items-center gap-0.5"
+                      className="group text-xs text-muted hover:text-ink transition-colors flex items-center gap-0.5"
                     >
                       <span className="inline-block transition-transform duration-200 ease-out group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
                         ↗
@@ -105,11 +105,11 @@ export default function Projects() {
                 </div>
               </div>
 
-              <p className="text-sm text-neutral-500 leading-relaxed">{project.description}</p>
+              <p className="text-sm text-muted leading-relaxed">{project.description}</p>
 
               <div className="flex gap-1.5 flex-wrap">
                 {project.tags.map((tag) => (
-                  <span key={tag} className="text-xs bg-neutral-100 text-neutral-400 px-2 py-0.5">
+                  <span key={tag} className="text-xs bg-panel text-muted px-2 py-0.5">
                     {tag}
                   </span>
                 ))}
