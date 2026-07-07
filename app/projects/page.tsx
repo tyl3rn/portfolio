@@ -29,12 +29,7 @@ const projects: {
     description:
       "a full-stack intramural sports management system for uva students with team registration, scheduling, and role-based auth.",
     tags: ["django", "postgresql", "amazon s3", "google oauth"],
-    thumbnail: {
-      type: "logo-text",
-      primary: "Cav",
-      secondary: "Rec",
-      colors: ["#E57200", "#232D4B"],
-    },
+    thumbnail: { type: "image", src: "/cavrec.png" },
     github: "https://github.com/tyl3rn/CIOManager",
   },
 ];
