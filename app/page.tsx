@@ -11,7 +11,7 @@ const experience = [
     location: "Fort Worth, TX",
     period: "Summer 2026",
     description:
-      "Modernizing legacy Java batch applications from WebSphere to Spring Boot on OpenShift, including a 20-year-old scheduling system behind a $1B+ annual capital program.",
+      "Modernizing legacy Java batch applications from WebSphere to Spring Boot on OpenShift.",
   },
   {
     role: "Software Developer Intern",
