@@ -57,16 +57,11 @@ export default function Personal() {
           <h1 className="font-display text-4xl sm:text-6xl font-semibold tracking-tight">
             Personal
           </h1>
-          {/* invisible copy of the home-page blurb: it reserves the same
-              height so the Home button sits exactly where the Personal
-              button was, and you can toggle pages without moving the
-              cursor */}
-          <p
-            aria-hidden
-            className="invisible select-none mt-4 text-base sm:text-lg leading-relaxed"
-          >
-            CS + math at the University of Virginia. I build full-stack and AI
-            things, and I&apos;m looking for a summer 2027 SWE internship.
+          {/* kept close in length to the home-page blurb so the Home button
+              lands where the Personal button was */}
+          <p className="mt-4 text-base sm:text-lg text-muted leading-relaxed">
+            Me behind the scenes: what&apos;s on repeat, what I&apos;m lifting,
+            and everything else that happens when the laptop closes.
           </p>
           <div className="mt-7 flex flex-wrap items-center gap-5">
             <Link
@@ -99,7 +94,7 @@ export default function Personal() {
 
       <section className="mx-auto max-w-5xl px-4 sm:px-8 py-20 sm:py-24">
         <SectionHead no="02" title="Music" />
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 sm:gap-10 max-w-3xl">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 sm:gap-10 max-w-3xl mx-auto">
           {albums.map((album, i) => {
             const art = findArt(album.file);
             return (
