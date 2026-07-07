@@ -12,7 +12,7 @@ const offTheClock = [
   {
     title: "Concerts",
     blurb:
-      "Currently have seen Laufey, 21 Savage, Swae Lee, Quavo, and Blood Orange.",
+      "I've been to Laufey, 21 Savage, Swae Lee, Quavo, and Blood Orange.",
   },
   {
     title: "Powerlifting",
@@ -24,8 +24,7 @@ const offTheClock = [
   },
   {
     title: "Videogames",
-    blurb:
-      "Grinded Minecraft PvP in middle school then peaked Immortal 3 in Valorant in high school",
+    blurb: "Ran Minecraft servers at age 12.",
   },
 ];
 
