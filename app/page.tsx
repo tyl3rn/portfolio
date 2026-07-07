@@ -29,7 +29,7 @@ const experience = [
     description: "Deep learning and generative AI.",
   },
   {
-    role: "AI Developer Intern",
+    role: "Tech Consultant Intern",
     company: "MyAiPathways",
     location: "Hamilton, VA",
     period: "Jan to Apr 2026",
@@ -235,9 +235,10 @@ function Projects() {
                   className="w-full h-full object-cover object-top"
                 />
               ) : (
-                <div className="w-full h-full grid place-items-center">
-                  <span className="font-display text-2xl font-semibold text-muted">
-                    CavRec
+                <div className="w-full h-full grid place-items-center bg-[#f4f4f5]">
+                  <span className="font-display text-3xl sm:text-4xl font-bold tracking-tight">
+                    <span style={{ color: "#232d4b" }}>Cav</span>
+                    <span style={{ color: "#e57200" }}>Rec</span>
                   </span>
                 </div>
               )}
