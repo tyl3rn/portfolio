@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 
@@ -18,6 +18,11 @@ export const metadata: Metadata = {
   title: "Tyler Nguyen",
   description:
     "CS + math at UVA. Builds full-stack and AI things. Seeking summer 2027 SWE internships.",
+};
+
+export const viewport: Viewport = {
+  colorScheme: "dark",
+  themeColor: "#0a0a0a",
 };
 
 export default function RootLayout({

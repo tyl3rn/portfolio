@@ -24,6 +24,8 @@
 }
 
 html {
+  background: var(--bg);
+  color-scheme: dark;
   scroll-behavior: smooth;
 }
 
