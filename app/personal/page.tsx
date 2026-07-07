@@ -1,4 +1,7 @@
+import { existsSync } from "fs";
+import { join } from "path";
 import type { Metadata } from "next";
+import Deadlift from "../components/deadlift";
 import { Reveal, SectionHead } from "../components/reveal";
 
 export const metadata: Metadata = {
@@ -25,14 +28,21 @@ const offTheClock = [
   },
 ];
 
-// Swap these placeholders for real artists, albums, or playlists.
-const onRotation = [
-  "[Artist or album]",
-  "[Artist or album]",
-  "[Artist or album]",
-  "[Artist or album]",
-  "[Artist or album]",
+// Drop cover art into public/albums with these file names (jpg, png,
+// or webp) and it appears automatically.
+const albums = [
+  { title: "Disillusioned", artist: "Daniel Caesar", file: "disillusioned" },
+  { title: "Actual Life 3", artist: "Fred again..", file: "actual-life-3" },
 ];
+
+function findArt(base: string): string | null {
+  for (const ext of ["jpg", "png", "webp"]) {
+    if (existsSync(join(process.cwd(), "public", "albums", `${base}.${ext}`))) {
+      return `/albums/${base}.${ext}`;
+    }
+  }
+  return null;
+}
 
 // Add photos to public/photos and list them here, e.g.
 // { src: "/photos/tokyo.jpg", alt: "Shibuya crossing at night" }
@@ -46,12 +56,10 @@ export default function Personal() {
           <h1 className="font-display text-4xl sm:text-6xl font-semibold tracking-tight">
             Personal
           </h1>
-          <p className="mt-4 text-base sm:text-lg text-muted leading-relaxed">
-            The side that doesn&apos;t fit on a résumé: what I&apos;m listening
-            to, where I&apos;ve been, and what I do off the clock.
-          </p>
         </div>
       </section>
+
+      <Deadlift />
 
       <section className="mx-auto max-w-5xl px-4 sm:px-8 py-20 sm:py-24">
         <SectionHead no="01" title="Off the clock" />
@@ -71,26 +79,32 @@ export default function Personal() {
 
       <section className="mx-auto max-w-5xl px-4 sm:px-8 py-20 sm:py-24">
         <SectionHead no="02" title="Music" />
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16">
-          <Reveal className="text-sm sm:text-base text-muted leading-relaxed">
-            <p>
-              Lo-fi while I work, house when it&apos;s going well, and whatever
-              a friend swears will change my life. This is a running list of
-              what&apos;s on rotation.
-            </p>
-          </Reveal>
-          <Reveal delay={0.1}>
-            <ul>
-              {onRotation.map((item, i) => (
-                <li
-                  key={i}
-                  className="border-t border-line py-3 first:border-t-0 first:pt-0 text-sm text-muted"
-                >
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </Reveal>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 sm:gap-10 max-w-3xl">
+          {albums.map((album, i) => {
+            const art = findArt(album.file);
+            return (
+              <Reveal key={album.title} delay={i * 0.08}>
+                {art ? (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img
+                    src={art}
+                    alt={`${album.title} album cover`}
+                    className="aspect-square w-full object-cover border border-line"
+                  />
+                ) : (
+                  <div className="aspect-square w-full border border-line bg-panel grid place-items-center p-6 text-center">
+                    <span className="text-xs text-muted">
+                      add public/albums/{album.file}.jpg
+                    </span>
+                  </div>
+                )}
+                <h3 className="mt-3 text-sm sm:text-base font-medium text-ink">
+                  {album.title}
+                </h3>
+                <p className="mt-0.5 text-sm text-muted">{album.artist}</p>
+              </Reveal>
+            );
+          })}
         </div>
       </section>
 
