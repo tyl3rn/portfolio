@@ -148,8 +148,8 @@ export default function Personal() {
         <SectionHead no="03" title="Photography" />
         {photos.length > 0 ? (
           <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-            {photos.map(({ src, alt }) => (
-              <Reveal key={src}>
+            {photos.map(({ src, alt }, i) => (
+              <Reveal key={src} delay={Math.floor(i / 3) * 0.4}>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={src}
