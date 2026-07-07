@@ -5,8 +5,8 @@ export default function About() {
         <p className="font-mono text-[10px] text-muted uppercase tracking-widest">about</p>
         <div className="flex flex-col gap-4 text-sm text-muted leading-relaxed max-w-sm">
           <p>
-            hey! i&apos;m tyler, a 3rd year at uva double majoring in computer science (b.a.)
-            and mathematics (b.a.).
+            hey! i&apos;m tyler, from virginia beach, va. i&apos;m a 3rd year at uva double
+            majoring in computer science (b.a.) and mathematics (b.a.).
           </p>
           <p>
             i&apos;m most interested in full-stack development, systems programming, and the
