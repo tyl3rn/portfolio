@@ -20,40 +20,17 @@ const SHOTS: Shot[] = [
   { dur: 1.1, peak: -122, spin: 340 }, // lob: slow and high
 ];
 
-// Drawn facing right, feet on y=0. Same silhouette as the original,
-// with detail layered on top of it.
+// Drawn facing right, feet on y=0.
 function Penguin() {
   return (
     <g>
-      {/* tail nub + far wing tip, peeking out behind the body */}
-      <path d="M-13 -10 Q -19 -7 -14 -4 Z" fill="#1f1f26" stroke="#3d3d44" strokeWidth="0.8" />
-      <ellipse cx="-13.5" cy="-19" rx="3" ry="7.5" fill="#1f1f26" transform="rotate(14 -13.5 -19)" />
-
-      {/* webbed feet: same size and stance, now orange with toe splits */}
-      <g stroke="#a35a04" strokeWidth="0.6">
-        <ellipse cx="-5" cy="-1.5" rx="4" ry="2" fill="#e0790a" />
-        <line x1="-5" y1="-0.2" x2="-5" y2="-2.6" />
-        <ellipse cx="5" cy="-1.5" rx="4" ry="2" fill="#e0790a" />
-        <line x1="5" y1="-0.2" x2="5" y2="-2.6" />
-      </g>
-
-      {/* body with a soft top-of-head sheen */}
+      <ellipse cx="-5" cy="-1.5" rx="4" ry="2" fill="#8f8f98" />
+      <ellipse cx="5" cy="-1.5" rx="4" ry="2" fill="#8f8f98" />
       <ellipse cx="0" cy="-24" rx="15" ry="22" fill="#262626" stroke="#3d3d44" strokeWidth="1" />
-      <path d="M-9 -40 Q -2 -47 6 -42" fill="none" stroke="#ededed" strokeWidth="1.4" opacity="0.14" strokeLinecap="round" />
-
-      {/* belly with a shaded right edge so it reads round */}
       <ellipse cx="3" cy="-19" rx="8.5" ry="13.5" fill="#ededed" />
-      <path d="M9 -28 Q 12 -19 8.5 -8.5" fill="none" stroke="#d3d3d9" strokeWidth="1.6" opacity="0.9" strokeLinecap="round" />
-
-      {/* eye with a catchlight */}
       <circle cx="7" cy="-38" r="2.6" fill="#ededed" />
       <circle cx="8" cy="-38" r="1.2" fill="#0a0a0a" />
-      <circle cx="8.4" cy="-38.5" r="0.45" fill="#ededed" />
-
-      {/* two-tone beak: same footprint, upper and lower mandible */}
-      <polygon points="13,-36 21,-33.6 13,-32.8" fill="#ff8906" />
-      <polygon points="13,-32.6 19.5,-33.2 13,-31" fill="#d97a08" />
-      <line x1="13" y1="-32.7" x2="20.2" y2="-33.4" stroke="#a35a04" strokeWidth="0.5" />
+      <polygon points="13,-36 21,-33 13,-31" fill="#ff8906" />
       {/* wing + paddle, reaching toward the net */}
       <g transform="rotate(-24 10 -28)">
         <ellipse cx="13" cy="-20" rx="4" ry="9" fill="#262626" stroke="#3d3d44" strokeWidth="1" />
