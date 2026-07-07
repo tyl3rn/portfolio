@@ -14,57 +14,19 @@ export default function Icon() {
         style={{
           alignItems: "center",
           background: "#0a0a0a",
+          border: "1.5px solid #3a3a3a",
+          borderRadius: 8,
+          color: "#ffffff",
           display: "flex",
+          fontSize: 14,
+          fontWeight: 700,
           height: "100%",
           justifyContent: "center",
+          letterSpacing: "-0.5px",
           width: "100%",
         }}
       >
-        <div
-          style={{
-            background: "#f5f5f5",
-            borderRadius: "50% 50% 45% 45%",
-            display: "flex",
-            height: 24,
-            position: "relative",
-            width: 24,
-          }}
-        >
-          <div
-            style={{
-              background: "#111827",
-              borderRadius: "50%",
-              height: 3,
-              left: 6,
-              position: "absolute",
-              top: 9,
-              width: 3,
-            }}
-          />
-          <div
-            style={{
-              background: "#111827",
-              borderRadius: "50%",
-              height: 3,
-              position: "absolute",
-              right: 6,
-              top: 9,
-              width: 3,
-            }}
-          />
-          <div
-            style={{
-              borderLeft: "4px solid transparent",
-              borderRight: "4px solid transparent",
-              borderTop: "5px solid #ff8906",
-              height: 0,
-              position: "absolute",
-              left: 8,
-              top: 14,
-              width: 0,
-            }}
-          />
-        </div>
+        TN
       </div>
     ),
     size,
