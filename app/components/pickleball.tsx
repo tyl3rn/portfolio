@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useAnimate, useReducedMotion } from "framer-motion";
 
 // Scroll down: left penguin serves. Scroll up: right penguin returns.
@@ -19,6 +19,62 @@ const SHOTS: Shot[] = [
   { dur: 0.65, peak: -64, spin: 540 }, // (weighted so normal is common)
   { dur: 1.1, peak: -122, spin: 340 }, // lob: slow and high
 ];
+
+// Hover Easter egg: each penguin gets a game-dialogue line.
+const BUBBLES = {
+  left: "plz hire tyler",
+  right: "he's a great guy",
+} as const;
+const TYPE_MS = 40; // per character
+
+// Retro dialogue box: double border, monospace type, blinking advance
+// arrow once the line finishes typing. Drawn above the penguin at cx.
+function Dialogue({
+  cx,
+  text,
+  typed,
+  reduced,
+}: {
+  cx: number;
+  text: string;
+  typed: number;
+  reduced: boolean;
+}) {
+  const w = text.length * 5.9 + 18;
+  const x = cx - w / 2;
+  const done = typed >= text.length;
+  return (
+    <g pointerEvents="none">
+      <polygon
+        points={`${cx - 5},75 ${cx + 5},75 ${cx},83`}
+        fill="#141414"
+        stroke="#ededed"
+        strokeWidth="1.1"
+      />
+      <rect x={x} y={50} width={w} height={26} rx={2} fill="#141414" stroke="#ededed" strokeWidth="1.2" />
+      {/* hide the tail's top edge where it meets the box */}
+      <rect x={cx - 4.4} y={74} width={8.8} height={2.2} fill="#141414" />
+      <rect x={x + 2.6} y={52.6} width={w - 5.2} height={20.8} rx={1} fill="none" stroke="#55555c" strokeWidth="0.9" />
+      <text
+        x={x + 9}
+        y={65}
+        fontFamily="ui-monospace, 'Cascadia Mono', 'Courier New', monospace"
+        fontSize="9"
+        letterSpacing="0.5"
+        fill="#ededed"
+      >
+        {text.slice(0, typed)}
+      </text>
+      {done && (
+        <polygon
+          points={`${x + w - 12},69.5 ${x + w - 6.5},69.5 ${x + w - 9.25},73.5`}
+          fill="#8f8f98"
+          className={reduced ? undefined : "animate-pulse"}
+        />
+      )}
+    </g>
+  );
+}
 
 // Drawn facing right, feet on y=0.
 function Penguin() {
@@ -52,6 +108,30 @@ function Penguin() {
 export default function Pickleball() {
   const [scope, animate] = useAnimate();
   const reduced = useReducedMotion();
+
+  const [speaking, setSpeaking] = useState<"left" | "right" | null>(null);
+  const [typed, setTyped] = useState(0);
+
+  useEffect(() => {
+    if (!speaking) return;
+    const full = BUBBLES[speaking].length;
+    if (reduced) {
+      setTyped(full);
+      return;
+    }
+    const id = setInterval(() => {
+      setTyped((n) => {
+        if (n + 1 >= full) clearInterval(id);
+        return Math.min(n + 1, full);
+      });
+    }, TYPE_MS);
+    return () => clearInterval(id);
+  }, [speaking, reduced]);
+
+  const speak = (side: "left" | "right") => {
+    setTyped(0);
+    setSpeaking(side);
+  };
 
   const side = useRef<"left" | "right">("left");
   const busyUntil = useRef(0);
@@ -185,12 +265,20 @@ export default function Pickleball() {
         </g>
 
         {/* players */}
-        <g transform="translate(120 132)">
+        <g
+          transform="translate(120 132)"
+          onMouseEnter={() => speak("left")}
+          onMouseLeave={() => setSpeaking(null)}
+        >
           <g data-hop="left">
             <Penguin />
           </g>
         </g>
-        <g transform="translate(440 132)">
+        <g
+          transform="translate(440 132)"
+          onMouseEnter={() => speak("right")}
+          onMouseLeave={() => setSpeaking(null)}
+        >
           <g data-hop="right">
             <g transform="scale(-1 1)">
               <Penguin />
@@ -218,6 +306,16 @@ export default function Pickleball() {
             </g>
           </g>
         </g>
+
+        {/* hover Easter egg: game-style dialogue above the hovered penguin */}
+        {speaking && (
+          <Dialogue
+            cx={speaking === "left" ? 120 : 440}
+            text={BUBBLES[speaking]}
+            typed={typed}
+            reduced={!!reduced}
+          />
+        )}
       </svg>
     </div>
   );
