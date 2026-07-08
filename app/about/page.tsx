@@ -1,3 +1,10 @@
+import type { Metadata } from "next";
+
+// unfinished scaffold page: keep it out of search results
+export const metadata: Metadata = {
+  robots: { index: false },
+};
+
 export default function About() {
   return (
     <div className="flex flex-col gap-10 pt-2">

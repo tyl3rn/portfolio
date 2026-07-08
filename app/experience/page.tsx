@@ -1,3 +1,10 @@
+import type { Metadata } from "next";
+
+// unfinished scaffold page: keep it out of search results
+export const metadata: Metadata = {
+  robots: { index: false },
+};
+
 const experience = [
   {
     role: "software engineering intern",

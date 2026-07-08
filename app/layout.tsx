@@ -15,6 +15,7 @@ const grotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://tylervannguyen.com"),
   title: "Tyler Nguyen",
   description:
     "CS + math at UVA. Builds full-stack and AI things. Seeking summer 2027 SWE internships.",

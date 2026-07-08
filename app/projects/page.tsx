@@ -1,4 +1,10 @@
+import type { Metadata } from "next";
 import { PageStagger, GridStagger, Fade } from "@/app/components/motion";
+
+// not linked from the live site yet: keep it out of search results
+export const metadata: Metadata = {
+  robots: { index: false },
+};
 
 type Thumbnail =
   | { type: "image"; src: string }
