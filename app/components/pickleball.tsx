@@ -23,7 +23,7 @@ const SHOTS: Shot[] = [
 // Hover Easter egg: each penguin gets a game-dialogue line.
 const BUBBLES = {
   left: "plz hire tyler",
-  right: "he's a great guy",
+  right: "he's a great guy :)",
 } as const;
 const TYPE_MS = 40; // per character
 
