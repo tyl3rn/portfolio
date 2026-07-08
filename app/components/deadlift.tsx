@@ -56,6 +56,12 @@ export default function Deadlift() {
           { y: [0, BODY_DROP] },
           { duration: REP_MS / 1000, ease: "easeInOut" }
         );
+        // the effort is over: sweat dries up as the bar settles
+        void animate(
+          "[data-sweat]",
+          { opacity: 0 },
+          { duration: (REP_MS * 0.6) / 1000, ease: "easeOut" }
+        );
       } else if (dir === "up" && barDown.current) {
         barDown.current = false;
         busyUntil.current = now + REP_MS + BUFFER_MS;
@@ -69,6 +75,12 @@ export default function Deadlift() {
           "[data-lifter]",
           { y: [BODY_DROP, -0.8, 0] },
           { duration: (REP_MS + 120) / 1000, ease: "easeOut" }
+        );
+        // sweat beads up as the pull reaches lockout
+        void animate(
+          "[data-sweat]",
+          { opacity: 1 },
+          { duration: 0.3, ease: "easeIn", delay: (REP_MS * 0.5) / 1000 }
         );
       }
     };
@@ -127,6 +139,22 @@ export default function Deadlift() {
             {/* flippers reaching down to the bar */}
             <ellipse cx="-13" cy="-30" rx="3.8" ry="11.5" fill="#262626" stroke="#3d3d44" strokeWidth="1" transform="rotate(13 -13 -30)" />
             <ellipse cx="13" cy="-30" rx="3.8" ry="11.5" fill="#262626" stroke="#3d3d44" strokeWidth="1" transform="rotate(-13 13 -30)" />
+
+            {/* game-style sweat: shown while the bar is held at lockout,
+                fades away once it rests on the floor */}
+            <g data-sweat>
+              <path
+                d="M10 -55 C11.7 -52.7 11.7 -50.9 10 -49.7 C8.3 -50.9 8.3 -52.7 10 -55 Z"
+                fill="#a8cfe0"
+                transform="rotate(18 10 -52)"
+              />
+              <path
+                d="M14 -49.5 C15.3 -47.7 15.3 -46.3 14 -45.4 C12.7 -46.3 12.7 -47.7 14 -49.5 Z"
+                fill="#a8cfe0"
+                opacity="0.8"
+                transform="rotate(24 14 -47.5)"
+              />
+            </g>
           </g>
 
           {/* power bar at lockout: thick sleeves, knurl, collars, and
