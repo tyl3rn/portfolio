@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import { useAnimate, useReducedMotion } from "framer-motion";
+import type { AnimationPlaybackControls } from "framer-motion";
 
 // Scroll down: the penguin sets the bar down. Scroll up: it pulls the
 // bar back to lockout. Starts already holding the bar, since the first
@@ -24,10 +25,37 @@ export default function Deadlift() {
   const lastY = useRef(0);
   const acc = useRef(0);
   const lastDir = useRef(0);
+  const sweatLoops = useRef<AnimationPlaybackControls[]>([]);
 
   useEffect(() => {
     const el = scope.current as HTMLElement | null;
     if (!el) return;
+
+    // While the bar is held, drops keep beading up, sliding down the
+    // head, and fading out. Two drops on offset cycles so one is
+    // always mid-drip. Reduced motion keeps them as static beads.
+    const stopSweat = () => {
+      for (const c of sweatLoops.current) c.stop();
+      sweatLoops.current = [];
+    };
+    const startSweat = () => {
+      stopSweat();
+      if (reduced) return;
+      sweatLoops.current = [0, 1].map((i) =>
+        animate(
+          `[data-drop="${i}"]`,
+          { y: [0, 1.6, 5.2], opacity: [0, 1, 0] },
+          {
+            duration: 1.15,
+            delay: i * 0.55,
+            repeat: Infinity,
+            repeatDelay: 0.35,
+            ease: "easeIn",
+          }
+        )
+      );
+    };
+    startSweat();
 
     const io = new IntersectionObserver(
       ([entry]) => {
@@ -57,6 +85,7 @@ export default function Deadlift() {
           { duration: REP_MS / 1000, ease: "easeInOut" }
         );
         // the effort is over: sweat dries up as the bar settles
+        stopSweat();
         void animate(
           "[data-sweat]",
           { opacity: 0 },
@@ -76,12 +105,13 @@ export default function Deadlift() {
           { y: [BODY_DROP, -0.8, 0] },
           { duration: (REP_MS + 120) / 1000, ease: "easeOut" }
         );
-        // sweat beads up as the pull reaches lockout
+        // sweat starts dripping again as the pull reaches lockout
         void animate(
           "[data-sweat]",
           { opacity: 1 },
           { duration: 0.3, ease: "easeIn", delay: (REP_MS * 0.5) / 1000 }
         );
+        startSweat();
       }
     };
 
@@ -107,6 +137,7 @@ export default function Deadlift() {
     return () => {
       io.disconnect();
       window.removeEventListener("scroll", onScroll);
+      stopSweat();
     };
   }, [animate, reduced, scope]);
 
@@ -143,17 +174,21 @@ export default function Deadlift() {
             {/* game-style sweat: shown while the bar is held at lockout,
                 fades away once it rests on the floor */}
             <g data-sweat>
-              <path
-                d="M10 -55 C11.7 -52.7 11.7 -50.9 10 -49.7 C8.3 -50.9 8.3 -52.7 10 -55 Z"
-                fill="#a8cfe0"
-                transform="rotate(18 10 -52)"
-              />
-              <path
-                d="M14 -49.5 C15.3 -47.7 15.3 -46.3 14 -45.4 C12.7 -46.3 12.7 -47.7 14 -49.5 Z"
-                fill="#a8cfe0"
-                opacity="0.8"
-                transform="rotate(24 14 -47.5)"
-              />
+              <g data-drop="0">
+                <path
+                  d="M10 -55 C11.7 -52.7 11.7 -50.9 10 -49.7 C8.3 -50.9 8.3 -52.7 10 -55 Z"
+                  fill="#a8cfe0"
+                  transform="rotate(18 10 -52)"
+                />
+              </g>
+              <g data-drop="1">
+                <path
+                  d="M14 -49.5 C15.3 -47.7 15.3 -46.3 14 -45.4 C12.7 -46.3 12.7 -47.7 14 -49.5 Z"
+                  fill="#a8cfe0"
+                  opacity="0.8"
+                  transform="rotate(24 14 -47.5)"
+                />
+              </g>
             </g>
           </g>
 
