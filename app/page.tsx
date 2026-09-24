@@ -30,14 +30,14 @@ const experience = [
     description: "Deep learning and generative AI.",
   },
   {
-    role: "Tech Consultant Intern",
+    role: "AI Consultant",
     company: "MyAiPathways",
     location: "Hamilton, VA",
     period: "Jan to Apr 2026",
     description: "Built a full-stack document automation platform.",
   },
   {
-    role: "Client Project Developer",
+    role: "Machine Learning Developer",
     company: "ML@UVA",
     location: "Charlottesville, VA",
     period: "Oct 2025 to Jan 2026",
@@ -109,8 +109,7 @@ function Hero() {
           Tyler Nguyen
         </h1>
         <p className="mt-4 text-base sm:text-lg text-muted leading-relaxed">
-          CS + math at the University of Virginia. I build full-stack and AI
-          things, and I&apos;m looking for a summer 2027 SWE internship.
+          Computer Science @ the University of Virginia
         </p>
         <div className="mt-7 flex flex-wrap items-center gap-5">
           <Link
@@ -122,7 +121,7 @@ function Hero() {
           {[
             { href: "https://github.com/tyl3rn", label: "GitHub" },
             { href: "https://linkedin.com/in/tyler-nguyen2028", label: "LinkedIn" },
-            { href: "/Tyler_Resume.pdf", label: "Résumé" },
+            { href: "/Nguyen__Tyler_Resume.pdf", label: "Résumé" },
           ].map((link) => (
             <a
               key={link.label}
