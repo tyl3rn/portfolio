@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, Space_Grotesk } from "next/font/google";
 import "./globals.css";
+import Backdrop from "./components/backdrop";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -38,7 +39,8 @@ export default function RootLayout({
       className={`${inter.variable} ${grotesk.variable}`}
     >
       <body className="bg-bg text-ink antialiased">
-        <main>{children}</main>
+        <Backdrop />
+        <main className="relative z-10">{children}</main>
       </body>
     </html>
   );
