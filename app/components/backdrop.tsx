@@ -11,8 +11,8 @@ const SCALE = 1 / 420; // noise frequency per px; smaller = broader shapes
 const SPEED = 0.000035; // noise-time per ms
 const LEVELS = 12; // contour lines across the field's range
 const LINE = "237, 237, 237"; // --ink as rgb
-const ALPHA = 0.08; // regular lines
-const ALPHA_INDEX = 0.14; // every 4th line, like index contours on a map
+const ALPHA = 0.05; // regular lines
+const ALPHA_INDEX = 0.09; // every 4th line, like index contours on a map
 const FPS = 30;
 
 /* ---------------- 3D simplex noise ---------------- */
