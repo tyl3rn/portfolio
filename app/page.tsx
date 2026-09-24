@@ -12,7 +12,7 @@ const experience = [
     location: "Fort Worth, TX",
     period: "Summer 2026",
     description:
-      "Modernizing legacy Java batch applications from WebSphere to Spring Boot on OpenShift.",
+      "Migrated 60+ batch jobs from WebSphere to Spring Boot on OpenShift and made them 60% faster along the way.",
   },
   {
     role: "Software Developer Intern",
@@ -20,7 +20,7 @@ const experience = [
     location: "Remote",
     period: "Apr 2026 to present",
     description:
-      "Building LLM gateways and IoT edge systems for production agentic AI workflows.",
+      "Built a multi-provider LLM gateway, an MCP-powered agent, and the guardrails that keep both in line.",
   },
   {
     role: "AI/ML Researcher",
@@ -34,7 +34,7 @@ const experience = [
     company: "MyAiPathways",
     location: "Hamilton, VA",
     period: "Jan to Apr 2026",
-    description: "Built a full-stack document automation platform.",
+    description: "Built a resume screener that cut manual review by 75% and a platform that drafts offer letters for you.",
   },
   {
     role: "Machine Learning Developer",
@@ -42,7 +42,7 @@ const experience = [
     location: "Charlottesville, VA",
     period: "Oct 2025 to Jan 2026",
     description:
-      "Built a computer vision scoring app for the UVA math tournament, reaching 96 to 100% accuracy.",
+      "Built an app that grades handwritten math tournament sheets 18x faster, from three minutes down to under ten seconds.",
   },
   {
     role: "Software Engineer Intern",
