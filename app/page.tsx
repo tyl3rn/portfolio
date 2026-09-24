@@ -7,7 +7,7 @@ import { Reveal, SectionHead } from "./components/reveal";
 
 const experience = [
   {
-    role: "Software Engineering Intern",
+    role: "Software Engineer Intern",
     company: "BNSF Railway",
     location: "Fort Worth, TX",
     period: "Summer 2026",
@@ -15,10 +15,10 @@ const experience = [
       "Migrated 60+ batch jobs from WebSphere to Spring Boot on OpenShift and made them 60% faster along the way.",
   },
   {
-    role: "Software Developer Intern",
+    role: "Software Engineer Intern",
     company: "Booz Allen Hamilton",
     location: "Remote",
-    period: "Apr 2026 to present",
+    period: "Apr to May 2026",
     description:
       "Built a multi-provider LLM gateway, an MCP-powered agent, and the guardrails that keep both in line.",
   },
