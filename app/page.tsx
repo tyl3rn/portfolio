@@ -149,13 +149,12 @@ function About() {
         <Reveal className="flex flex-col gap-5 text-sm sm:text-base text-muted leading-relaxed">
           <p>
             Hey, I&apos;m Tyler. I&apos;m from Virginia Beach, VA, and a
-            third-year at the University of Virginia double majoring in
-            computer science and mathematics.
+            third-year at the University of Virginia majoring in computer
+            science.
           </p>
           <p>
             I&apos;m most interested in full-stack development, AI engineering,
-            and building things that solve real problems, ideally the kind
-            people actually use the next morning.
+            and building things that solve real problems.
           </p>
         </Reveal>
 
