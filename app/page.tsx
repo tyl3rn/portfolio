@@ -82,6 +82,15 @@ const projects: {
     image: "/cavrec.png",
     github: "https://github.com/tyl3rn/CIOManager",
   },
+  {
+    title: "AI Shortform Video Generator",
+    year: "2026",
+    description:
+      "A pipeline that turns Reddit stories into narrated vertical videos, using an AI judge to score posts and only render the ones worth watching.",
+    tags: ["Python", "FastAPI", "Claude API", "ffmpeg", "edge-tts"],
+    image: "/duedatepic.png",
+    github: "https://github.com/tyl3rn/ai-shortform-video-generator",
+  },
 ];
 
 const skills = [
