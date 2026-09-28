@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Deadlift from "../components/deadlift";
-import { Reveal, SectionHead } from "../components/reveal";
+import { Reveal } from "../components/reveal";
+import { HeroName, SectionTitle } from "../components/type";
 
 export const metadata: Metadata = {
   title: "Personal · Tyler Nguyen",
@@ -83,32 +84,27 @@ const photos = [
 export default function Personal() {
   return (
     <>
-      <section className="mx-auto max-w-5xl px-4 sm:px-8 pt-36 sm:pt-44 pb-10 sm:pb-14">
-        <div className="max-w-2xl">
-          <h1 className="font-display text-4xl sm:text-6xl font-semibold tracking-tight">
-            Personal
-          </h1>
-          {/* kept close in length to the home-page blurb so the Home button
-              lands where the Personal button was */}
-          <p className="mt-4 text-base sm:text-lg text-muted leading-relaxed">
-            Me behind the scenes: what&apos;s on repeat, what I&apos;m lifting,
-            and everything else that happens when the laptop closes.
-          </p>
-          <div className="mt-7 flex flex-wrap items-center gap-5">
-            <Link
-              href="/"
-              className="inline-flex min-w-[6.5rem] justify-center rounded-full bg-ink px-4 py-2 text-sm font-medium text-bg hover:opacity-80 transition-opacity"
-            >
-              Home
-            </Link>
-          </div>
+      <section className="mx-auto max-w-5xl px-4 sm:px-8 pt-32 sm:pt-40 pb-10 sm:pb-14">
+        <HeroName text="Personal" />
+        {/* invisible copy of the home-page subtitle so the Home button
+            lands exactly where the Personal button was */}
+        <p aria-hidden className="invisible mt-6 text-base sm:text-lg leading-relaxed">
+          Computer Science @ the University of Virginia
+        </p>
+        <div className="mt-7 flex flex-wrap items-center gap-5">
+          <Link
+            href="/"
+            className="inline-flex min-w-[6.5rem] justify-center rounded-full bg-ink px-4 py-2 text-sm font-medium text-bg hover:opacity-80 transition-opacity"
+          >
+            Home
+          </Link>
         </div>
       </section>
 
       <Deadlift />
 
       <section className="mx-auto max-w-5xl px-4 sm:px-8 py-20 sm:py-24">
-        <SectionHead no="01" title="Off the clock" />
+        <SectionTitle title="Off the clock" />
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-10">
           {offTheClock.map((item, i) => (
             <Reveal key={item.title} delay={i * 0.06}>
@@ -124,7 +120,7 @@ export default function Personal() {
       </section>
 
       <section className="mx-auto max-w-5xl px-4 sm:px-8 py-20 sm:py-24">
-        <SectionHead no="02" title="Currently listening to" />
+        <SectionTitle title="On repeat" />
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10">
           {songs.map((song, i) => (
             <Reveal key={song.title} delay={i * 0.08}>
@@ -144,7 +140,7 @@ export default function Personal() {
       </section>
 
       <section className="mx-auto max-w-5xl px-4 sm:px-8 py-20 sm:py-24 pb-28 sm:pb-36">
-        <SectionHead no="03" title="Photography" />
+        <SectionTitle title="Photography" />
         {photos.length > 0 ? (
           <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
             {photos.map(({ src, alt }, i) => (

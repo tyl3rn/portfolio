@@ -1,18 +1,14 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Space_Grotesk } from "next/font/google";
+import { Recursive } from "next/font/google";
 import "./globals.css";
 import Backdrop from "./components/backdrop";
 
-const inter = Inter({
-  variable: "--font-inter",
+// One variable family for everything: MONO, CASL, slnt, and wght axes
+// cover the monospace labels, casual display type, and body copy.
+const recursive = Recursive({
+  variable: "--font-recursive",
   subsets: ["latin"],
-  weight: ["400", "500"],
-});
-
-const grotesk = Space_Grotesk({
-  variable: "--font-grotesk",
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+  axes: ["CASL", "MONO", "slnt"],
 });
 
 export const metadata: Metadata = {
@@ -36,7 +32,7 @@ export default function RootLayout({
     <html
       lang="en"
       data-scroll-behavior="smooth"
-      className={`${inter.variable} ${grotesk.variable}`}
+      className={recursive.variable}
     >
       <body className="bg-bg text-ink antialiased">
         <Backdrop />

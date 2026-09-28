@@ -19,8 +19,8 @@
   --color-ink: var(--ink);
   --color-muted: var(--muted);
   --color-accent: var(--accent);
-  --font-sans: var(--font-inter);
-  --font-display: var(--font-grotesk);
+  --font-sans: var(--font-recursive);
+  --font-display: var(--font-recursive);
 }
 
 html {
@@ -32,9 +32,20 @@ html {
 body {
   background: var(--bg);
   color: var(--ink);
-  font-family: var(--font-inter), Inter, ui-sans-serif, system-ui, sans-serif;
+  font-family: var(--font-recursive), ui-sans-serif, system-ui, sans-serif;
+  font-variation-settings: "CASL" 0.3;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
+}
+
+/* Recursive's axes as utilities. font-variation-settings replaces the
+   whole list, so each one states every axis it cares about. */
+@utility mono {
+  font-variation-settings: "MONO" 1, "CASL" 0;
+}
+
+@utility casual {
+  font-variation-settings: "MONO" 0, "CASL" 1;
 }
 
 ::selection {
