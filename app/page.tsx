@@ -94,21 +94,21 @@ const projects: {
   },
 ];
 
-// Straight from the résumé, read out as sentences in the Skills section.
+// Straight from the résumé.
 const skills = [
   {
-    lead: "I write",
+    label: "languages",
     items: ["Python", "Java", "C", "TypeScript", "JavaScript", "SQL", "R", "HTML/CSS"],
   },
   {
-    lead: "I build with",
+    label: "frameworks",
     items: [
       "React.js", "Node.js", "Express.js", "Flask", "Django",
       "Spring Boot", "OpenCV", "LiteLLM", "PyTorch",
     ],
   },
   {
-    lead: "And I live in",
+    label: "tools",
     items: [
       "Git", "Docker", "Kubernetes", "OpenShift", "Rancher",
       "Jenkins", "PostgreSQL", "Keycloak", "Linux",
@@ -274,31 +274,26 @@ function Projects() {
   );
 }
 
-// "I write Python, Java, ..., and HTML/CSS." Skills in ink, the
-// connecting words muted. Commas ride on the skill so a line never
-// starts with one.
-function skillSentence(lead: string, items: string[]) {
-  const muted = "text-muted";
-  const parts: { text: string; className?: string }[] = [
-    { text: `${lead} `, className: muted },
-  ];
-  items.forEach((item, i) => {
-    const last = i === items.length - 1;
-    if (last) parts.push({ text: "and ", className: muted });
-    parts.push({ text: last ? `${item}.` : `${item}, `, className: "text-ink" });
-  });
-  return parts;
-}
-
 function Skills() {
   return (
     <section id="skills" className="mx-auto max-w-5xl px-4 sm:px-8 py-24 sm:py-32 scroll-mt-16">
       <SectionTitle title="Skills" />
-      <Reveal className="flex flex-col gap-5 sm:gap-6 text-xl sm:text-3xl leading-[1.3] tracking-tight">
-        {skills.map((s) => (
-          <p key={s.lead}>
-            <Morph text={skillSentence(s.lead, s.items)} reach={1.1} />
-          </p>
+      <Reveal className="grid grid-cols-3 gap-4 sm:gap-10">
+        {skills.map((group) => (
+          <div key={group.label}>
+            <h3 className="casual text-sm text-muted">{group.label}</h3>
+            <ul className="mt-4 sm:mt-5 flex flex-col gap-1.5 sm:gap-2 text-sm sm:text-lg text-ink">
+              {group.items.map((item) => (
+                // hovering an item flips it into Recursive's monospace
+                <li
+                  key={item}
+                  className="w-fit hover:mono transition-[font-variation-settings] duration-200"
+                >
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
         ))}
       </Reveal>
     </section>
