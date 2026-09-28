@@ -7,8 +7,16 @@ const NEAR = { MONO: 0, CASL: 1, wght: 900, slnt: -15 };
 
 type Parts = string | { text: string; className?: string }[];
 
-export function Morph({ text, reach }: { text: Parts; reach?: number }) {
-  return <Letters text={text} base={BASE} near={NEAR} reach={reach} />;
+export function Morph({
+  text,
+  reach,
+  intro,
+}: {
+  text: Parts;
+  reach?: number;
+  intro?: boolean;
+}) {
+  return <Letters text={text} base={BASE} near={NEAR} reach={reach} intro={intro} />;
 }
 
 export function HeroName({ text }: { text: string }) {

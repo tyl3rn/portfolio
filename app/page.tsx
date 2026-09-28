@@ -3,6 +3,7 @@ import Link from "next/link";
 import Pickleball from "./components/pickleball";
 import { Reveal } from "./components/reveal";
 import { HeroName, Morph, SectionTitle } from "./components/type";
+import { projects } from "./projects/data";
 
 /* ---------------- data ---------------- */
 
@@ -52,45 +53,6 @@ const experience = [
     period: "Sep to Dec 2025",
     description:
       "Built content moderation and new features for UVA's course review platform serving 10k+ users.",
-  },
-];
-
-const projects: {
-  title: string;
-  year: string;
-  description: string;
-  tags: string[];
-  image?: string;
-  github: string;
-  live?: string;
-}[] = [
-  {
-    title: "Rally",
-    year: "2026",
-    description:
-      "A passive personal safety app that monitors sensor signals and automatically alerts friends when someone may be in danger.",
-    tags: ["React Native", "Claude API", "Node.js", "Supabase", "Express"],
-    image: "/rallyportfolio.png",
-    github: "https://github.com/rallyhoohacks/rally-together",
-    live: "https://rally-together.com/",
-  },
-  {
-    title: "CavRec",
-    year: "2026",
-    description:
-      "A full-stack intramural sports management system for UVA students with team registration, scheduling, and role-based auth.",
-    tags: ["Django", "PostgreSQL", "Amazon S3", "Google OAuth"],
-    image: "/cavrec.png",
-    github: "https://github.com/tyl3rn/CIOManager",
-  },
-  {
-    title: "AI Shortform Video Generator",
-    year: "2026",
-    description:
-      "A pipeline that turns Reddit stories into narrated vertical videos, using an AI judge to score posts and only render the ones worth watching.",
-    tags: ["Python", "FastAPI", "Claude API", "ffmpeg", "edge-tts"],
-    image: "/duedatepic.png",
-    github: "https://github.com/tyl3rn/ai-shortform-video-generator",
   },
 ];
 
@@ -217,7 +179,10 @@ function Projects() {
         {projects.map((project) => (
           <Reveal key={project.title}>
             <article className="grid md:grid-cols-[3fr_2fr] gap-6 md:gap-10 items-start">
-              <div className="aspect-video w-full overflow-hidden border border-line bg-panel">
+              <Link
+                href={`/projects/${project.slug}`}
+                className="block aspect-video w-full overflow-hidden border border-line bg-panel hover:border-muted transition-colors"
+              >
                 {project.image && (
                   // eslint-disable-next-line @next/next/no-img-element
                   <img
@@ -226,14 +191,16 @@ function Projects() {
                     className="w-full h-full object-cover object-top"
                   />
                 )}
-              </div>
+              </Link>
 
               <div>
                 <p className="mono text-xs uppercase tracking-wider text-muted">
                   {project.year}
                 </p>
                 <h3 className="mt-2 text-2xl sm:text-3xl leading-tight tracking-tight lowercase">
-                  <Morph text={project.title} reach={1.2} />
+                  <Link href={`/projects/${project.slug}`}>
+                    <Morph text={project.title} reach={1.2} />
+                  </Link>
                 </h3>
                 <p className="mt-3 text-sm sm:text-base text-muted leading-relaxed">
                   {project.description}
