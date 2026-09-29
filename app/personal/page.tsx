@@ -121,7 +121,7 @@ export default function Personal() {
 
       <section className="mx-auto max-w-5xl px-4 sm:px-8 py-20 sm:py-24">
         <SectionTitle title="On repeat" />
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-3 gap-y-6 sm:gap-10">
           {songs.map((song, i) => (
             <Reveal key={song.title} delay={i * 0.08}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
