@@ -89,7 +89,7 @@ const projects: {
     description:
       "A pipeline that turns Reddit stories into narrated vertical videos, using an AI judge to score posts and only render the ones worth watching.",
     tags: ["Python", "FastAPI", "Claude API", "ffmpeg", "edge-tts"],
-    image: "/duedatepic.png",
+    image: "/showrunnerpic.png",
     github: "https://github.com/tyl3rn/ai-shortform-video-generator",
   },
 ];
