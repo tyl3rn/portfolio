@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Deadlift from "../components/deadlift";
+import OffTheClock from "../components/off-the-clock";
 import Photo from "../components/photo";
 import { Reveal } from "../components/reveal";
 import { HeroName, SectionTitle } from "../components/type";
@@ -9,29 +10,6 @@ export const metadata: Metadata = {
   title: "Personal · Tyler Nguyen",
   description: "Music, travel, and everything that doesn't fit on a résumé.",
 };
-
-const offTheClock = [
-  {
-    title: "Concerts",
-    blurb:
-      "Been to: Laufey, Blood Orange, Quavo, Swae Lee, 21 Savage, Steve Lacy, and The Chainsmokers.",
-  },
-  {
-    title: "Type racing",
-    blurb:
-      "I like to do Monkeytype. I can do 150 WPM (using the chopstick method).",
-  },
-  {
-    title: "Pickleball",
-    blurb:
-      "Every game, you can count on me to hit the ball directly into the net.",
-  },
-  {
-    title: "Videogames",
-    blurb:
-      "Peaked Immortal 3 in Valorant. Also had a Minecraft server in middle school.",
-  },
-];
 
 const songs = [
   {
@@ -91,7 +69,7 @@ const photos = [
   { src: "/pic3.jpg", location: "Mt. Fuji, Japan" },
   { src: "/pic4.jpg", location: "Chelsea, NYC" },
   { src: "/pic5.jpg", location: "Project Glow, DC" },
-  { src: "/pic6.jpg", location: "Tokyo Tower, Japan" },
+  { src: "/pic6.jpg", location: "Tokyo Skytree, Japan" },
 ];
 
 export default function Personal() {
@@ -118,18 +96,7 @@ export default function Personal() {
 
       <section className="mx-auto max-w-5xl px-4 sm:px-8 py-20 sm:py-24">
         <SectionTitle title="Off the clock" />
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-10">
-          {offTheClock.map((item, i) => (
-            <Reveal key={item.title} delay={i * 0.06}>
-              <div>
-                <h3 className="text-sm font-medium text-ink">{item.title}</h3>
-                <p className="mt-1.5 text-sm text-muted leading-relaxed">
-                  {item.blurb}
-                </p>
-              </div>
-            </Reveal>
-          ))}
-        </div>
+        <OffTheClock />
       </section>
 
       <section className="mx-auto max-w-5xl px-4 sm:px-8 py-20 sm:py-24">
