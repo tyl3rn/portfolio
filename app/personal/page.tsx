@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Deadlift from "../components/deadlift";
+import Photo from "../components/photo";
 import { Reveal } from "../components/reveal";
 import { HeroName, SectionTitle } from "../components/type";
 
@@ -13,19 +14,22 @@ const offTheClock = [
   {
     title: "Concerts",
     blurb:
-      "I've been to Laufey, 21 Savage, Swae Lee, Quavo, and Blood Orange.",
+      "Been to: Laufey, Blood Orange, Quavo, Swae Lee, 21 Savage, Steve Lacy, and The Chainsmokers.",
   },
   {
-    title: "Powerlifting",
-    blurb: "Chasing numbers that go up slower than my commit count.",
+    title: "Type racing",
+    blurb:
+      "I like to do Monkeytype. I can do 150 WPM (using the chopstick method).",
   },
   {
     title: "Pickleball",
-    blurb: "I take this sport way too competitively.",
+    blurb:
+      "Every game, you can count on me to hit the ball directly into the net.",
   },
   {
     title: "Videogames",
-    blurb: "Ran Minecraft servers at age 12.",
+    blurb:
+      "Peaked Immortal 3 in Valorant. Also had a Minecraft server in middle school.",
   },
 ];
 
@@ -34,51 +38,60 @@ const songs = [
     title: "Disillusioned (with serpentwithfeet)",
     artist: "Daniel Caesar, serpentwithfeet",
     art: "/disillusioned.jpg",
+    spotify: "https://open.spotify.com/track/4Jj48NypRej8Rld9U69Nvm",
   },
   {
     title: "X's",
     artist: "Cigarettes After Sex",
     art: "/cigarettesaftersex.jpg",
+    spotify: "https://open.spotify.com/track/5HCGI3Hq9VQC56semRgJmz",
   },
   {
     title: "Danielle (smile on my face)",
     artist: "Fred again..",
     art: "/danielle.jpg",
+    spotify: "https://open.spotify.com/track/2sLVs5iX0osogh4jcsAJkv",
   },
   {
     title: "7 Summers",
     artist: "Morgan Wallen",
     art: "/7summers.png",
+    spotify: "https://open.spotify.com/track/6HS3f7P583DyCWODyGWIXM",
   },
   {
     title: "DON'T BELIEVE IT",
     artist: "John Summit, Absolutely",
     art: "/dontbelieveit.jpg",
+    spotify: "https://open.spotify.com/track/5TbTOkgK8UAjtjIuIVPAjE",
   },
   {
     title: "Ivy",
     artist: "Frank Ocean",
     art: "/ivy.jpg",
+    spotify: "https://open.spotify.com/track/2ZWlPOoWh0626oTaHrnl2a",
   },
   {
     title: "Pool House",
     artist: "The Backseat Lovers",
     art: "/poolhouse.jpg",
+    spotify: "https://open.spotify.com/track/6Kpf6FndBITOaLHVuVbWmj",
   },
   {
     title: "Bad Girls",
     artist: "Blood Orange",
     art: "/badgirls.jpg",
+    spotify: "https://open.spotify.com/track/37WUQa7Mcm3aGQOp2rwEZi",
   },
 ];
 
+// location shows in the hover bubble and doubles as the alt text
 const photos = [
-  { src: "/pic1.jpg", alt: "Photography 1" },
-  { src: "/pic2.jpg", alt: "Photography 2" },
-  { src: "/pic3.jpg", alt: "Photography 3" },
-  { src: "/pic4.jpg", alt: "Photography 4" },
-  { src: "/pic5.jpg", alt: "Photography 5" },
-  { src: "/pic6.jpg", alt: "Photography 6" },
+  { src: "/pic1.jpg", location: "Kyoto, Japan" },
+  { src: "/pic2.jpg", location: "Osaka, Japan" },
+  { src: "/pic3.jpg", location: "Mt. Fuji, Japan" },
+  { src: "/pic4.jpg", location: "Chelsea, NYC" },
+  { src: "/pic5.jpg", location: "Project Glow, DC" },
+  { src: "/pic6.jpg", location: "Tokyo Tower, Japan" },
 ];
 
 export default function Personal() {
@@ -108,7 +121,7 @@ export default function Personal() {
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-10">
           {offTheClock.map((item, i) => (
             <Reveal key={item.title} delay={i * 0.06}>
-              <div className="border-t border-line pt-4">
+              <div>
                 <h3 className="text-sm font-medium text-ink">{item.title}</h3>
                 <p className="mt-1.5 text-sm text-muted leading-relaxed">
                   {item.blurb}
@@ -124,16 +137,24 @@ export default function Personal() {
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-3 gap-y-6 sm:gap-10">
           {songs.map((song, i) => (
             <Reveal key={song.title} delay={i * 0.08}>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={song.art}
-                alt={`${song.title} cover art`}
-                className="aspect-square w-full object-cover border border-line"
-              />
-              <h3 className="mt-3 text-sm sm:text-base font-medium text-ink">
-                {song.title}
-              </h3>
-              <p className="mt-0.5 text-sm text-muted">{song.artist}</p>
+              <a
+                href={song.spotify}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`${song.title} by ${song.artist} on Spotify`}
+                className="group block"
+              >
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={song.art}
+                  alt={`${song.title} cover art`}
+                  className="aspect-square w-full object-cover border border-line transition-transform duration-300 ease-out group-hover:scale-[1.04] group-focus-visible:scale-[1.04]"
+                />
+                <h3 className="mt-3 text-sm sm:text-base font-medium text-ink">
+                  {song.title}
+                </h3>
+                <p className="mt-0.5 text-sm text-muted">{song.artist}</p>
+              </a>
             </Reveal>
           ))}
         </div>
@@ -143,16 +164,11 @@ export default function Personal() {
         <SectionTitle title="Photography" />
         {photos.length > 0 ? (
           <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-            {photos.map(({ src, alt }, i) => (
+            {photos.map(({ src, location }, i) => (
               // base 0.4s so the first row's fade is actually visible,
               // not swallowed by the scroll-into-view moment
               <Reveal key={src} delay={0.4 + Math.floor(i / 3) * 0.4}>
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={src}
-                  alt={alt}
-                  className="aspect-square w-full object-cover border border-line"
-                />
+                <Photo src={src} alt={location} location={location} />
               </Reveal>
             ))}
           </div>
