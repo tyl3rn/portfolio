@@ -56,7 +56,7 @@ export default function Avatar() {
       onClick={() => setShades((on) => !on)}
       aria-pressed={shades}
       aria-label={shades ? "Take the shades off" : "Put the shades on"}
-      className="relative mx-auto block aspect-square w-56 cursor-pointer rounded-full outline-none transition-shadow duration-300 hover:shadow-[0_0_0_2px_rgba(27,141,179,0.7),0_0_48px_6px_rgba(27,141,179,0.35)] focus-visible:shadow-[0_0_0_2px_rgba(27,141,179,0.7),0_0_48px_6px_rgba(27,141,179,0.35)] sm:w-72"
+      className="relative mx-auto block aspect-square w-56 cursor-pointer rounded-full outline-none transition-shadow duration-300 hover:shadow-[0_0_0_2px_rgba(22,127,163,0.7),0_0_48px_6px_rgba(22,127,163,0.35)] focus-visible:shadow-[0_0_0_2px_rgba(22,127,163,0.7),0_0_48px_6px_rgba(22,127,163,0.35)] sm:w-72"
     >
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img

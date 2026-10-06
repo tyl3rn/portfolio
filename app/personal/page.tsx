@@ -1,9 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Deadlift from "../components/deadlift";
+import { YouTubeIcon } from "../components/icons";
 import OffTheClock from "../components/off-the-clock";
 import Photo from "../components/photo";
 import { Reveal } from "../components/reveal";
+import SiteBar from "../components/site-bar";
+import SiteLinks from "../components/site-links";
 import { HeroName, SectionTitle } from "../components/type";
 
 export const metadata: Metadata = {
@@ -75,7 +78,18 @@ const photos = [
 export default function Personal() {
   return (
     <>
-      <section className="mx-auto max-w-5xl px-4 sm:px-8 pt-32 sm:pt-40 pb-10 sm:pb-14">
+      <SiteBar
+        sections={[
+          { id: "off-the-clock", label: "off the clock" },
+          { id: "fun-facts", label: "fun facts" },
+          { id: "on-repeat", label: "on repeat" },
+          { id: "photography", label: "photography" },
+        ]}
+      />
+      <section className="relative mx-auto max-w-5xl px-4 sm:px-8 pt-32 sm:pt-40 pb-10 sm:pb-14">
+        <div className="absolute right-4 top-6 sm:right-8 sm:top-8">
+          <SiteLinks />
+        </div>
         <HeroName text="Personal" />
         {/* invisible copy of the home-page subtitle so the Home button
             lands exactly where the Personal button was */}
@@ -94,12 +108,12 @@ export default function Personal() {
 
       <Deadlift />
 
-      <section className="mx-auto max-w-5xl px-4 sm:px-8 py-20 sm:py-24">
+      <section id="off-the-clock" className="mx-auto max-w-5xl px-4 sm:px-8 py-20 sm:py-24 scroll-mt-16">
         <SectionTitle title="Off the clock" />
         <OffTheClock />
       </section>
 
-      <section className="mx-auto max-w-5xl px-4 sm:px-8 py-20 sm:py-24">
+      <section id="fun-facts" className="mx-auto max-w-5xl px-4 sm:px-8 py-20 sm:py-24 scroll-mt-16">
         <SectionTitle title="Fun facts" />
         <Reveal>
           <ul className="casual flex max-w-3xl list-disc flex-col gap-4 pl-6 text-lg sm:gap-5 sm:text-2xl leading-snug text-ink marker:text-muted">
@@ -115,21 +129,14 @@ export default function Personal() {
                 aria-label="My YouTube channel, @clienting8525"
                 className="ml-2.5 inline-block align-[-0.12em] text-muted transition-colors hover:text-ink"
               >
-                {/* YouTube mark, one color; the play triangle is cut out */}
-                <svg viewBox="0 0 24 24" aria-hidden className="h-[1.05em] w-[1.05em]">
-                  <path
-                    fill="currentColor"
-                    fillRule="evenodd"
-                    d="M23 12s0-3.4-.4-5a2.6 2.6 0 0 0-1.8-1.8C19.2 4.8 12 4.8 12 4.8s-7.2 0-8.8.4A2.6 2.6 0 0 0 1.4 7C1 8.6 1 12 1 12s0 3.4.4 5a2.6 2.6 0 0 0 1.8 1.8c1.6.4 8.8.4 8.8.4s7.2 0 8.8-.4a2.6 2.6 0 0 0 1.8-1.8c.4-1.6.4-5 .4-5ZM9.8 15.3V8.7l5.7 3.3-5.7 3.3Z"
-                  />
-                </svg>
+<YouTubeIcon className="h-[1.05em] w-[1.05em]" />
               </a>
             </li>
           </ul>
         </Reveal>
       </section>
 
-      <section className="mx-auto max-w-5xl px-4 sm:px-8 py-20 sm:py-24">
+      <section id="on-repeat" className="mx-auto max-w-5xl px-4 sm:px-8 py-20 sm:py-24 scroll-mt-16">
         <SectionTitle title="On repeat" />
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-3 gap-y-6 sm:gap-10">
           {songs.map((song, i) => (
@@ -157,7 +164,7 @@ export default function Personal() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-5xl px-4 sm:px-8 py-20 sm:py-24 pb-28 sm:pb-36">
+      <section id="photography" className="mx-auto max-w-5xl px-4 sm:px-8 py-20 sm:py-24 pb-28 sm:pb-36 scroll-mt-16">
         <SectionTitle title="Photography" />
         {photos.length > 0 ? (
           <div className="grid grid-cols-2 md:grid-cols-3 gap-3">

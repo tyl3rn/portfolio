@@ -2,6 +2,8 @@ import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 import Avatar from "./components/avatar";
 import Pickleball from "./components/pickleball";
+import SiteBar from "./components/site-bar";
+import SiteLinks from "./components/site-links";
 import { Reveal } from "./components/reveal";
 import { HeroName, Morph, SectionTitle } from "./components/type";
 
@@ -121,7 +123,10 @@ const skills = [
 
 function Hero() {
   return (
-    <section id="top" className="mx-auto max-w-5xl px-4 sm:px-8 pt-32 sm:pt-40 pb-10 sm:pb-14">
+    <section id="top" className="relative mx-auto max-w-5xl px-4 sm:px-8 pt-32 sm:pt-40 pb-10 sm:pb-14">
+      <div className="absolute right-4 top-6 sm:right-8 sm:top-8">
+        <SiteLinks />
+      </div>
       <HeroName text="Tyler Nguyen" />
       <p className="mt-6 text-base sm:text-lg text-muted leading-relaxed">
         Computer Science @ the University of Virginia
@@ -133,22 +138,6 @@ function Hero() {
         >
           Personal
         </Link>
-        {[
-          { href: "https://github.com/tyl3rn", label: "GitHub" },
-          { href: "https://linkedin.com/in/tyler-nguyen2028", label: "LinkedIn" },
-          { href: "/Nguyen__Tyler_Resume.pdf", label: "Résumé" },
-        ].map((link) => (
-          <a
-            key={link.label}
-            href={link.href}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-1 text-sm text-muted hover:text-ink transition-colors"
-          >
-            {link.label}
-            <ArrowUpRight size={14} aria-hidden />
-          </a>
-        ))}
       </div>
     </section>
   );
@@ -304,16 +293,8 @@ function Skills() {
 
 function Footer() {
   return (
-    <footer id="contact" className="mx-auto max-w-5xl px-4 sm:px-8 py-24 sm:py-32">
-      <SectionTitle title="Let's make something" />
-      <a
-        href="mailto:wgq4tr@virginia.edu"
-        className="casual inline-flex items-center gap-2 text-xl sm:text-2xl text-muted hover:text-ink transition-colors"
-      >
-        wgq4tr@virginia.edu
-        <ArrowUpRight size={20} aria-hidden />
-      </a>
-      <p className="mono mt-16 text-xs text-muted">
+    <footer className="mx-auto max-w-5xl px-4 sm:px-8 pt-8 pb-16">
+      <p className="mono text-xs text-muted">
         © {new Date().getFullYear()} Tyler Nguyen, built with Next.js
       </p>
     </footer>
@@ -325,6 +306,14 @@ function Footer() {
 export default function Home() {
   return (
     <>
+      <SiteBar
+        sections={[
+          { id: "about", label: "about" },
+          { id: "experience", label: "experience" },
+          { id: "projects", label: "projects" },
+          { id: "skills", label: "skills" },
+        ]}
+      />
       <Hero />
       <div className="mx-auto max-w-5xl px-4 sm:px-8">
         <Avatar />
