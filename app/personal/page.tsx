@@ -100,6 +100,36 @@ export default function Personal() {
       </section>
 
       <section className="mx-auto max-w-5xl px-4 sm:px-8 py-20 sm:py-24">
+        <SectionTitle title="Fun facts" />
+        <Reveal>
+          <ul className="casual flex max-w-3xl list-disc flex-col gap-4 pl-6 text-lg sm:gap-5 sm:text-2xl leading-snug text-ink marker:text-muted">
+            <li>Hiked Mt. Fuji in summer 2026.</li>
+            <li>Solved Rubik&apos;s cubes at competitions when I was 10.</li>
+            <li>Went to MineCon 2013 and met SkyDoesMinecraft and Notch.</li>
+            <li>
+              Used to upload Fortnite montages to my YouTube channel.
+              <a
+                href="https://www.youtube.com/@clienting8525"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="My YouTube channel, @clienting8525"
+                className="ml-2.5 inline-block align-[-0.12em] text-muted transition-colors hover:text-ink"
+              >
+                {/* YouTube mark, one color; the play triangle is cut out */}
+                <svg viewBox="0 0 24 24" aria-hidden className="h-[1.05em] w-[1.05em]">
+                  <path
+                    fill="currentColor"
+                    fillRule="evenodd"
+                    d="M23 12s0-3.4-.4-5a2.6 2.6 0 0 0-1.8-1.8C19.2 4.8 12 4.8 12 4.8s-7.2 0-8.8.4A2.6 2.6 0 0 0 1.4 7C1 8.6 1 12 1 12s0 3.4.4 5a2.6 2.6 0 0 0 1.8 1.8c1.6.4 8.8.4 8.8.4s7.2 0 8.8-.4a2.6 2.6 0 0 0 1.8-1.8c.4-1.6.4-5 .4-5ZM9.8 15.3V8.7l5.7 3.3-5.7 3.3Z"
+                  />
+                </svg>
+              </a>
+            </li>
+          </ul>
+        </Reveal>
+      </section>
+
+      <section className="mx-auto max-w-5xl px-4 sm:px-8 py-20 sm:py-24">
         <SectionTitle title="On repeat" />
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-3 gap-y-6 sm:gap-10">
           {songs.map((song, i) => (
