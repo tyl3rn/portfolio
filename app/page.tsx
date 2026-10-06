@@ -1,5 +1,6 @@
 import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
+import Avatar from "./components/avatar";
 import Pickleball from "./components/pickleball";
 import { Reveal } from "./components/reveal";
 import { HeroName, Morph, SectionTitle } from "./components/type";
@@ -325,8 +326,11 @@ export default function Home() {
   return (
     <>
       <Hero />
-      <Pickleball />
+      <div className="mx-auto max-w-5xl px-4 sm:px-8">
+        <Avatar />
+      </div>
       <About />
+      <Pickleball />
       <Experience />
       <Projects />
       <Skills />
