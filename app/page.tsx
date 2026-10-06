@@ -167,9 +167,10 @@ function About() {
         </p>
         <p className="mt-8 max-w-2xl text-base sm:text-lg text-muted leading-relaxed">
           I&apos;m most interested in{" "}
-          <span className="mono text-ink">full-stack development</span>,{" "}
-          <span className="mono text-ink">AI engineering</span>, and building
-          things that solve real problems.
+          <span className="mono text-ink">backend</span> and{" "}
+          <span className="mono text-ink">AI agents</span>. I like automating
+          things and then making them faster. Lately that&apos;s meant agentic
+          workflows.
         </p>
       </Reveal>
     </section>
