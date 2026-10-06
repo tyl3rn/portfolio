@@ -40,3 +40,7 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 /Tyler_Resume_Jul_1 - Copy.pdf
+
+# notes for AI coding assistants (kept local, not part of the site)
+AGENTS.md
+CLAUDE.md

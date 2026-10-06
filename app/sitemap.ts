@@ -1,7 +1,6 @@
 import type { MetadataRoute } from "next";
 
-// Only the pages that are actually part of the live site. The other
-// routes are unfinished scaffolds and carry a noindex tag instead.
+// The two pages the site has.
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
     {

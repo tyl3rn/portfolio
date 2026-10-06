@@ -1,6 +1,6 @@
 # tylervannguyen.com
 
-My personal site: projects, experience, resume, and a personal page with music and photography.
+My personal site: projects, experience, resume, and a personal page with music, photography, and fun facts.
 
 **Live:** [tylervannguyen.com](https://tylervannguyen.com)
 
@@ -13,20 +13,22 @@ My personal site: projects, experience, resume, and a personal page with music a
 
 ## A few details
 
-- **Contour backdrop:** faint topographic lines drift behind every page. A 3D simplex noise field is traced with marching squares each frame and drawn in a Web Worker via `OffscreenCanvas`, with a main-thread fallback. It respects `prefers-reduced-motion`.
-- **Penguins:** the pickleball penguins on the home page have something to say if you hover them, and the personal page has one deadlifting.
+- **Ridgeline backdrop:** rows of jagged mountain ridges drift behind every page, fading into fog toward the top. Heights come from a 3D simplex noise field folded into sharp creases; rows are drawn back to front so nearer ranges hide the ones behind. It renders in a Web Worker via `OffscreenCanvas` (with a main-thread fallback) and holds still under `prefers-reduced-motion`.
+- **Colors from a photo:** the palette is sampled from my Mt. Fuji hiking photo in the hero: fog for the page, volcanic basalt for text, and the teal of my backpack strap as the one accent.
+- **Shades:** click the photo and a pair of pixel sunglasses drops onto my face.
+- **Penguins:** the pickleball penguins on the home page rally as you scroll and have something to say if you hover them; the personal page has one deadlifting.
+- **Personal page:** a Monkeytype-style test that types itself at 150 wpm, album covers that open on Spotify, and photos that tell you where they were taken.
+- **Navigation:** a bar drops in once you scroll past the top, with the page's sections and a contact card that copies my email.
 
 ## Structure
 
 ```
 app/
   page.tsx          home: intro, about, experience, projects, skills
-  personal/         music, photography, and the rest
-  components/       backdrop, type/motion helpers, penguins
-  sitemap.ts        only the live pages are indexed
-  about/ experience/ gallery/ music/ projects/
-                    in-progress routes (noindex)
-public/             images, album covers, resume PDF
+  personal/         off the clock, fun facts, music, photography
+  components/       backdrop, nav bar, photo + shades, penguins, type helpers
+  sitemap.ts        home and personal
+public/             photos, album covers, project images, resume PDF
 ```
 
 ## Running locally
