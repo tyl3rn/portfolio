@@ -15,7 +15,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://tylervannguyen.com"),
   title: "Tyler Nguyen",
   description:
-    "CS + math at UVA. Builds full-stack and AI things. Seeking summer 2027 SWE internships.",
+    "CS + math at UVA. Builds backend systems and AI agents. Seeking summer 2027 SWE internships.",
 };
 
 export const viewport: Viewport = {
