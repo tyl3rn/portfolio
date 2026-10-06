@@ -1,6 +1,6 @@
-// Draws the contour backdrop off the main thread so scrolling and the
+// Draws the ridgeline backdrop off the main thread so scrolling and the
 // letter morphs never wait on it.
-import { FPS, createContours } from "./contours";
+import { FPS, createRidges } from "./ridges";
 
 type Message =
   | { type: "init"; canvas: OffscreenCanvas; w: number; h: number; dpr: number; still: boolean }
@@ -8,7 +8,7 @@ type Message =
   | { type: "still"; still: boolean }
   | { type: "visible"; visible: boolean };
 
-let renderer: ReturnType<typeof createContours> | null = null;
+let renderer: ReturnType<typeof createRidges> | null = null;
 let still = false;
 let visible = true;
 let timer: ReturnType<typeof setTimeout> | undefined;
@@ -31,7 +31,7 @@ self.onmessage = (e: MessageEvent<Message>) => {
   if (m.type === "init") {
     const ctx = m.canvas.getContext("2d");
     if (!ctx) return;
-    renderer = createContours(m.canvas, ctx);
+    renderer = createRidges(m.canvas, ctx);
     renderer.resize(m.w, m.h, m.dpr);
     still = m.still;
     restart();

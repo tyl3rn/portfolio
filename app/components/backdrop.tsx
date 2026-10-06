@@ -1,9 +1,9 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { FPS, createContours } from "./contours";
+import { FPS, createRidges } from "./ridges";
 
-// Faint drifting contour lines behind every page (see contours.ts).
+// Faint drifting ridgelines behind every page (see ridges.ts).
 // Rendering happens in a worker via OffscreenCanvas; browsers without it
 // fall back to drawing on the main thread.
 export default function Backdrop() {
@@ -55,10 +55,10 @@ export default function Backdrop() {
     } else {
       const ctx = (canvas as HTMLCanvasElement).getContext("2d");
       if (ctx) {
-        const contours = createContours(canvas, ctx);
+        const ridges = createRidges(canvas, ctx);
         const resize = () => {
           const { w, h, dpr } = size();
-          contours.resize(w, h, dpr);
+          ridges.resize(w, h, dpr);
         };
 
         let raf = 0;
@@ -68,16 +68,16 @@ export default function Backdrop() {
           raf = requestAnimationFrame(tick);
           if (now - last < 1000 / FPS) return;
           last = now;
-          contours.draw(now - start);
+          ridges.draw(now - start);
         };
         const run = () => {
           cancelAnimationFrame(raf);
-          if (still.matches) contours.draw(0);
+          if (still.matches) ridges.draw(0);
           else raf = requestAnimationFrame(tick);
         };
         const onResize = () => {
           resize();
-          if (still.matches) contours.draw(0);
+          if (still.matches) ridges.draw(0);
         };
 
         resize();
