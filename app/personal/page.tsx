@@ -91,11 +91,17 @@ export default function Personal() {
           <SiteLinks />
         </div>
         <HeroName text="Personal" />
-        {/* invisible copy of the home-page subtitle so the Home button
-            lands exactly where the Personal button was */}
-        <p aria-hidden className="invisible mt-6 text-base sm:text-lg leading-relaxed">
-          Computer Science @ the University of Virginia
-        </p>
+        {/* the subtitle sits on an invisible copy of the home-page one, so
+            the Home button lands exactly where the Personal button was even
+            when that line wraps */}
+        <div className="mt-6 grid text-base sm:text-lg leading-relaxed">
+          <p aria-hidden className="invisible col-start-1 row-start-1">
+            Computer Science @ the University of Virginia
+          </p>
+          <p className="col-start-1 row-start-1 text-muted">
+            Me, behind the scenes
+          </p>
+        </div>
         <div className="mt-7 flex flex-wrap items-center gap-5">
           <Link
             href="/"
