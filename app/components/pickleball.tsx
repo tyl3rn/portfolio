@@ -47,28 +47,28 @@ function Dialogue({
     <g pointerEvents="none">
       <polygon
         points={`${cx - 5},75 ${cx + 5},75 ${cx},83`}
-        fill="#141414"
-        stroke="#ededed"
+        fill="#f4f7f9"
+        stroke="#171a21"
         strokeWidth="1.1"
       />
-      <rect x={x} y={50} width={w} height={26} rx={2} fill="#141414" stroke="#ededed" strokeWidth="1.2" />
+      <rect x={x} y={50} width={w} height={26} rx={2} fill="#f4f7f9" stroke="#171a21" strokeWidth="1.2" />
       {/* hide the tail's top edge where it meets the box */}
-      <rect x={cx - 4.4} y={74} width={8.8} height={2.2} fill="#141414" />
-      <rect x={x + 2.6} y={52.6} width={w - 5.2} height={20.8} rx={1} fill="none" stroke="#55555c" strokeWidth="0.9" />
+      <rect x={cx - 4.4} y={74} width={8.8} height={2.2} fill="#f4f7f9" />
+      <rect x={x + 2.6} y={52.6} width={w - 5.2} height={20.8} rx={1} fill="none" stroke="#9aa4ae" strokeWidth="0.9" />
       <text
         x={x + 9}
         y={65}
         fontFamily="ui-monospace, 'Cascadia Mono', 'Courier New', monospace"
         fontSize="9"
         letterSpacing="0.5"
-        fill="#ededed"
+        fill="#171a21"
       >
         {text.slice(0, typed)}
       </text>
       {done && (
         <polygon
           points={`${x + w - 12},69.5 ${x + w - 6.5},69.5 ${x + w - 9.25},73.5`}
-          fill="#8f8f98"
+          fill="#586270"
           className={reduced ? undefined : "animate-pulse"}
         />
       )}
@@ -242,7 +242,7 @@ export default function Pickleball() {
 
         {/* court */}
         <line x1="60" y1="132" x2="500" y2="132" stroke="#262626" strokeWidth="2" strokeLinecap="round" />
-        <ellipse cx="280" cy="134" rx="150" ry="4" fill="#141414" opacity="0.7" />
+        <ellipse cx="280" cy="134" rx="150" ry="4" fill="#171a21" opacity="0.08" />
 
         {/* net */}
         <g>

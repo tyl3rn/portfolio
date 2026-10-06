@@ -151,7 +151,7 @@ export default function Deadlift() {
       >
         {/* floor */}
         <line x1="60" y1="98" x2="260" y2="98" stroke="#262626" strokeWidth="2" strokeLinecap="round" />
-        <ellipse cx="160" cy="100" rx="76" ry="3.5" fill="#141414" opacity="0.7" />
+        <ellipse cx="160" cy="100" rx="76" ry="3.5" fill="#171a21" opacity="0.08" />
 
         <g transform="translate(160 98)">
           {/* feet stay planted while the body hinges */}
@@ -177,14 +177,14 @@ export default function Deadlift() {
               <g data-drop="0">
                 <path
                   d="M10 -55 C11.7 -52.7 11.7 -50.9 10 -49.7 C8.3 -50.9 8.3 -52.7 10 -55 Z"
-                  fill="#a8cfe0"
+                  fill="#4fa3c7"
                   transform="rotate(18 10 -52)"
                 />
               </g>
               <g data-drop="1">
                 <path
                   d="M14 -49.5 C15.3 -47.7 15.3 -46.3 14 -45.4 C12.7 -46.3 12.7 -47.7 14 -49.5 Z"
-                  fill="#a8cfe0"
+                  fill="#4fa3c7"
                   opacity="0.8"
                   transform="rotate(24 14 -47.5)"
                 />

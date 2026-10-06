@@ -1,14 +1,17 @@
 @import "tailwindcss";
 
-/* Neutral grays carry the page; amber is the only accent. */
+/* Pulled from the Mt. Fuji photo in the hero: fog for the page, basalt
+   (the volcanic sand, the pants) for text, slate fog for secondary text,
+   and the backpack strap's teal as the one UI accent. Illustrations keep
+   their own orange (beaks, ball, plates), which sits opposite the teal. */
 :root {
-  --bg: #0a0a0a;
-  --panel: #141414;
-  --panel-2: #1c1c1c;
-  --line: #262626;
-  --ink: #ededed;
-  --muted: #8f8f98;
-  --accent: #ff8906;
+  --bg: #e6edf3;
+  --panel: #f4f7f9;
+  --panel-2: #dde4ea;
+  --line: #c3ccd5;
+  --ink: #171a21;
+  --muted: #586270;
+  --accent: #1b8db3;
 }
 
 @theme inline {
@@ -25,7 +28,7 @@
 
 html {
   background: var(--bg);
-  color-scheme: dark;
+  color-scheme: light;
   scroll-behavior: smooth;
 }
 
@@ -50,6 +53,6 @@ body {
 
 ::selection {
   background: var(--accent);
-  color: #0a0a0a;
+  color: #ffffff;
 }
 

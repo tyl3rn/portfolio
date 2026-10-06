@@ -69,7 +69,7 @@ export default function Photo({
             {/* tail pointing down at the photo; drawn first so
                 the inner border stays on top of it */}
             <span className="absolute left-1/2 top-full h-2.5 w-2.5 -translate-x-1/2 -translate-y-[5px] rotate-45 border-b border-r border-ink bg-panel" />
-            <div className="relative rounded-[2px] border border-[#55555c] py-1.5 pl-3 pr-6 font-mono text-xs tracking-wide text-ink whitespace-nowrap">
+            <div className="relative rounded-[2px] border border-[#9aa4ae] py-1.5 pl-3 pr-6 font-mono text-xs tracking-wide text-ink whitespace-nowrap">
               {/* the full line, invisible, holds the box at its final width
                   so it doesn't grow as the text types */}
               <span className="grid">
