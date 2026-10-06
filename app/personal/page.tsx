@@ -118,10 +118,10 @@ export default function Personal() {
         <Reveal>
           <ul className="casual flex max-w-3xl list-disc flex-col gap-4 pl-6 text-lg sm:gap-5 sm:text-2xl leading-snug text-ink marker:text-muted">
             <li>Hiked Mt. Fuji in summer 2026.</li>
-            <li>Solved Rubik&apos;s cubes at competitions when I was 10.</li>
+            <li>Competed in Rubik&apos;s cube competitions at age 10.</li>
             <li>Went to MineCon 2013 and met SkyDoesMinecraft and Notch.</li>
             <li>
-              Used to upload Fortnite montages to my YouTube channel.
+              Used to upload Fortnite montages (and more) to my YouTube channel!
               <a
                 href="https://www.youtube.com/@clienting8525"
                 target="_blank"
