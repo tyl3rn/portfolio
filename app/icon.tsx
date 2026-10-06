@@ -9,26 +9,66 @@ export const size = {
 
 export const contentType = "image/png";
 
+// The site's penguin in the shades from the hero photo, on a 16x16 grid so
+// every pixel lands on a whole pixel at 16, 32, and 48px. Teal tile so it
+// shows up on light and dark tab bars alike.
+const PIXELS = [
+  ".............G..",
+  ".....BBBBBB.GGG.",
+  "....BBBBBBBB.G..",
+  "...BBBBBBBBBB...",
+  "..SSSSSSSSSSSS..",
+  "..SGSSSWWSGSSS..",
+  "..BSSSWWWWSSSB..",
+  "..BWWWWOOWWWWB..",
+  ".BBWWWWWWWWWWBB.",
+  "BBBWWWWWWWWWWBBB",
+  "BBBWWWWWWWWWWBBB",
+  ".BBWWWWWWWWWWBB.",
+  "..BWWWWWWWWWWB..",
+  "..BBWWWWWWWWBB..",
+  "...BBBBBBBBBB...",
+  "...OOO....OOO...",
+];
+const COLORS: Record<string, string> = {
+  B: "#2b313b", // body, a touch lighter than the shades so they read
+  W: "#f4f7f9", // face and belly
+  S: "#000000", // shades
+  G: "#ffffff", // glint and sparkle
+  O: "#ff8906", // beak and feet
+};
+const CELL = size.width / 16;
+
 export default function Icon() {
   return new ImageResponse(
     (
       <div
         style={{
-          alignItems: "center",
-          background: "#171a21",
-          border: "2px solid #167fa3",
-          borderRadius: 12,
-          color: "#e9eef2",
+          background: "#167fa3",
+          borderRadius: 9,
           display: "flex",
-          fontSize: 21,
-          fontWeight: 700,
           height: "100%",
-          justifyContent: "center",
-          letterSpacing: "-0.5px",
+          position: "relative",
           width: "100%",
         }}
       >
-        TN
+        {PIXELS.flatMap((row, y) =>
+          Array.from(row, (c, x) =>
+            c === "." ? null : (
+              <div
+                key={`${x}-${y}`}
+                style={{
+                  background: COLORS[c],
+                  height: CELL,
+                  left: x * CELL,
+                  position: "absolute",
+                  top: y * CELL,
+                  width: CELL,
+                }}
+              />
+            )
+          )
+        )}
       </div>
     ),
     size,
